@@ -1,13 +1,21 @@
 import { useState } from 'react'
 import './App.css'
+import { ToastContainer } from 'react-toastify'
+import { Outlet } from 'react-router-dom'
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1 className=' w-full text-center text-gray-700 border-2'>Sport Splash</h1>
-    </>
+    <div className=' w-full block'>
+
+        {/* <Header /> */}
+        <ToastContainer />
+        <main>
+          <Outlet />
+        </main>
+        {/* <Footer /> */}
+      </div>
   )
 }
 
