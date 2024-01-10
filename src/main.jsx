@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
-import {Protected, Signin , Signup} from './components'
+import {Protected} from './components'
 import store from './store/store.js'
+import { Signin, Signup } from './pages'
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
           </Protected>
         )
       },
+      {
+        path : '/create-tournament',
+        element : (
+          <Protected authentication= {true}>
+              <Signup/>
+          </Protected>
+        )
+      }
       
     ]
   }

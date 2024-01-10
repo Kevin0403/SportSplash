@@ -23,7 +23,7 @@ class Database {
                 return userData;
             }
         }catch(error){
-            throw new Error(error.message);
+            throw error;
         }
     }
 
@@ -50,8 +50,7 @@ class Database {
             }
         }
         catch(error){
-            console.log(error);
-            throw new Error(error.message);
+            throw error;
         }
     }
 
@@ -101,7 +100,7 @@ class Database {
             }
         }
         catch(error){
-            throw new Error(error.message);
+            throw error;
         }
     }
 

@@ -3,6 +3,7 @@ import './App.css'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { Outlet } from 'react-router-dom'
+import { Header, Footer } from './components';
 
 
 function App() {
@@ -10,12 +11,12 @@ function App() {
   return (
     <div className=' w-full block'>
 
-        {/* <Header /> */}
         <ToastContainer />
+        <Header />
         <main>
           <Outlet />
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
   )
 }
