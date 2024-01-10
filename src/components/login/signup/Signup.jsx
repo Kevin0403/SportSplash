@@ -6,7 +6,7 @@ import {toast} from 'react-toastify';
 import authService from '../../../connection/auth';
 import { useDispatch } from 'react-redux';
 import {login} from "../../../store/authslice"
-import { ArrowRight } from 'lucide-react'
+// import { ArrowRight } from 'lucide-react'
 
 function Signup() {
 
@@ -19,10 +19,10 @@ function Signup() {
     
     try {
       const userData = await authService.createUser(data);
-      if(userDarta){
+      if(userData){
         const userData = await authService.login(data);
         if(userData){
-            dispatch(login(userDarta));
+            dispatch(login(userData));
             toast.success("Login Success");
         }
       }
@@ -70,7 +70,8 @@ function Signup() {
             })}
             />
           <Button className="mt-3" type="submit">
-            Create Account <ArrowRight className="ml-2" size={16} />
+            Create Account 
+            {/* <ArrowRight className="ml-2" size={16} /> */}
           </Button>
         </form>
       </div>
