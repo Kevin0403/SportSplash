@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import {toast} from 'react-toastify';
 import authService from '../../../connection/auth';
 import { useDispatch } from 'react-redux';
-import {login} from "../../../store/authslice"
-// import { ArrowRight } from 'lucide-react'
+import {login as authLogin} from "../../../store/authslice"
+import { ArrowRight } from 'lucide-react'
 
 function Signup() {
 
@@ -27,11 +27,12 @@ function Signup() {
   const login = async (data) => {
     
     try {
-      const userData = await authService.createUser(data);
+      let userData = await authService.createUser(data);
       if(userData){
-        const userData = await authService.login(data);
+        userData = await authService.login(userData);
         if(userData){
-            dispatch(login(userData));
+            dispatch(authLogin(userData));
+            navigate("/signin")
             toast.success("Login Success");
         }
       }
@@ -65,8 +66,8 @@ function Signup() {
               label = "First Name"
               placeholder = "Fist Name"
               type = "text"
-              divClass = " basis-1/2"
-              {...register("firstName", {
+              divClass = " basis-1/2 pr-2"
+              {...register("fname", {
                 required: "First Name is required"
               })}
             />
@@ -74,8 +75,8 @@ function Signup() {
               label = "Last Name"
               placeholder = "Last Name"
               type = "text"
-              divClass = "basis-1/2"
-              {...register("lastName", {
+              divClass = "basis-1/2 "
+              {...register("lname", {
                 required: "Last Name is required"
               })}
             />
@@ -83,8 +84,8 @@ function Signup() {
           <Input 
           label="Phone Number"
           placeholder="Phone"
-          type="email"
-          {...register("phone", {
+          type="text"
+          {...register("mobileno", {
               required: "Phone number is required",
               validate: {
                   matchPatern: (value) => /^\d{10}$/.test(value) || "Phone number must be 10 digits",
@@ -106,7 +107,7 @@ function Signup() {
           <Select
             options={["DDU", "Nirma"]}
             label="College"
-            {...register("college", {
+            {...register("university", {
               required: "College is required",
             })}
           />
@@ -120,7 +121,7 @@ function Signup() {
             />
           <Button className="mt-3" type="submit">
             Create Account 
-            {/* <ArrowRight className="ml-2" size={16} /> */}
+            <ArrowRight className="ml-2" size={16} />
           </Button>
         </form>
       </div>

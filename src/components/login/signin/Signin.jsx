@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import {ToastContainer, toast} from 'react-toastify';
 import authService from '../../../connection/auth';
 import { useDispatch } from 'react-redux';
-import {login} from "../../../store/authslice"
+import {login as authLogin} from "../../../store/authslice"
 import { ArrowRight } from 'lucide-react'
 
 function Signin() {
@@ -14,7 +14,7 @@ function Signin() {
   const { register, handleSubmit, formState: { errors}} = useForm();
   const dispatch = useDispatch();
 
-  const errorMessage = () =>{
+  const errorMessage = () =>{  
     for (const error of Object.entries(errors)) {
       toast.error(error[1].message);
     }
@@ -29,7 +29,7 @@ function Signin() {
     try {
       const userData = await authService.login(data);
       if(userData){
-        dispatch(login(userData));
+        dispatch(authLogin(userData));
         toast.success("Login Success");
       }
     } catch (error) {
