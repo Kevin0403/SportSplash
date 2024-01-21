@@ -14,6 +14,8 @@ class Database {
         password,
       });
 
+      (userData)
+
       if (userData.error) {
         throw new Error(userData.error);
       } else {
@@ -38,7 +40,7 @@ class Database {
   ) {
     try {
       const userData = await axios
-        .post(`${conf.databaseUrl}/createuser`, {
+        .post(`${conf.databaseUrl}/signup`, {
           email,
           password,
           mobileno,
@@ -103,8 +105,8 @@ class Database {
           throw new Error(error.message);
         });
 
-      if (userData.error) {
-        throw new Error(userData.error);
+      if (userData && userData.error) {
+        throw new Error(userData.error && "Not able to send request");
       } else {
         return userData;
       }
@@ -114,38 +116,25 @@ class Database {
   }
 
   // create tournament : that create and insert into tournament table
-  async createTournament(
-    email,
-    game,
-    tournamentName,
-    banner,
-    teams,
-    teamSize,
-    startDate,
-    endDate,
-    ...rest
-  ) {
+  async createTournament(tournamentName, game, banner, teamSize, startDate, endDate, user, teams) {
     try {
       const tournamentData = await axios
-        .post(`${this.databaseUrl}/tournament`, {
-          email,
+        .post(`${this.databaseUrl}/tournaments`, {
+          user,
           tournamentName,
-          banner,
           game,
           teams,
           teamSize,
           startDate,
-          endDate,
-          time,
-          ...rest,
+          endDate
         })
         .then((response) => response.data)
         .catch((error) => {
           throw new Error(error.message);
         });
 
-      if (tournamentData.error) {
-        throw new Error(tournamentData.error);
+      if ((tournamentData && tournamentData.error) || !tournamentData.user) {
+        throw new Error(tournamentData.error && "Not able to send request");
       } else {
         return tournamentData;
       }
@@ -153,6 +142,8 @@ class Database {
       throw error;
     }
   }
+
+  
 }
 
 const database = new Database();

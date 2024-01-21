@@ -9,8 +9,16 @@ import Footer from "./footer/Footer";
 import CreateTournament from "./create-tournament/CreateToutnament";
 import TournamentHeader from "./header/TournamentHeader";
 import Tournament from "./Tournament/Tournament";
+import Teams from "./Tournament/Teams";
+import Team from "./Tournament/Team";
+import Player from "./Tournament/Player";
+import Players from "./Tournament/players";
 
 export {
+    Player,
+    Players,
+    Team,
+    Teams,
     Tournament,
     TournamentHeader,
     Input,

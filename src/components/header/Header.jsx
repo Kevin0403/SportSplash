@@ -14,11 +14,11 @@ function Header() {
     },
     {
       name: "About",
-      to: "/",
+      to: "/about",
     },
     {
       name: "Contact",
-      to: "/",
+      to: "/contact",
     },
   ];
 

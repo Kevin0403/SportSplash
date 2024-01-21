@@ -3,12 +3,16 @@ import { useForm } from "react-hook-form";
 import { Input, Button, Select } from '../index';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authService from '../../connection/auth';
 
 function CreateTournament() {
 
     const { register, handleSubmit, formState: { errors} } = useForm();
+
+    const user = useSelector((state) => state.auth.userData)
+
+    const navigate = useNavigate();
 
     const Games = ["Cricket", "Bedmintan", "Table Tennis"]
 
@@ -25,8 +29,12 @@ function CreateTournament() {
 
     const createTournament = async (data) => {
       try{
-        const tournamentData = authService.createTournament(data);
-        
+        const tournamentData =await authService.createTournament(data, user);
+        console.log(tournamentData)
+        if(tournamentData){
+          toast.success("Tournament Created Successfully");
+          navigate(`/tournament/${tournamentData.id}`);
+        }
       }
       catch(error){
         toast.error(error.message);

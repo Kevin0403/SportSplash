@@ -1,8 +1,9 @@
 import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
-import { Home, Signin, Signup, CreateTournament, Tournament } from '../pages'
-import { Protected} from '../components'
+import { Home, Signin, Signup, CreateTournament, Tournament, About } from '../pages'
+import { Protected, Team, Teams} from '../components'
+import { Contact } from 'lucide-react'
 
 const router = createBrowserRouter([
     {
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
             [
               {
                 path : '',
-                element : <h1>hello</h1>
+                element : <Teams/>
               },
               {
                 path : 'matches',
@@ -72,8 +73,16 @@ const router = createBrowserRouter([
               }
             ]
           )
+        },
+        {
+          path: '/contact',
+          element: <Contact />
+        },
+        {
+          path: '/about',
+          element: <About/>
         }
-        
+
       ]
     }
   ])

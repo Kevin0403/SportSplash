@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Tournament as TournamentComponent } from '../components'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function Tournament() {
-  return (
+  const [data, setData ] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
+
+  const { id } = useParams()
+
+  //fetch data from database and call setData to set the data
+  useEffect(() => {
+    setData({
+      id :1,
+      name : 'DDu Premear leage'
+    })
+    setIsAdmin(true)
+  }, []) 
+
+  return data ? (
     <>
-    <TournamentComponent />
+    <TournamentComponent isAdmin = {isAdmin} {...data} />
     <div>
-        <Outlet />
+        <Outlet isAdmin = {isAdmin} />
     </div>
     </>
+  ) : (
+    <div>Loading</div>
   )
 }
 

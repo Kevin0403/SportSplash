@@ -54,8 +54,8 @@ class Auth {
         }
     }
 
-    // Create Tournament : that create and insert into tournament table
 
+    // Create Tournament : that create and insert into tournament table
     async createTournament({
         tournamentName,
         game,
@@ -63,14 +63,23 @@ class Auth {
         teamSize,
         startDate,
         endDate,
-        email,
+
         teams,
-        ...rest
-    }) {
+    }, user) {
         try {
-            return await this.database.createTournament(tournamentName, game, banner, teamSize, startDate, endDate, email, teams, ...rest);
+            return await this.database.createTournament(tournamentName, game, banner, teamSize, startDate, endDate, user, teams);
         }
         catch (error) {
+            throw error;
+        }
+    }
+
+
+    // Get Teams from tournament id
+    async getTeams(tournamentId) {
+        try {
+            return await this.database.getTeams(tournamentId);
+        } catch (error) {
             throw error;
         }
     }

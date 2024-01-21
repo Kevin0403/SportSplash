@@ -13,7 +13,7 @@ function App() {
 
         <ToastContainer />
         <Header />
-        <main className=' pt-10'>
+        <main className='pt-14'>
           <Outlet />
         </main>
         <Footer />
