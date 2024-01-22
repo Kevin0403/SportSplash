@@ -32,7 +32,7 @@ function Header() {
   };
 
   return (
-    <div className=" fixed w-full bg-white">
+    <div className=" z-20 fixed w-full bg-white">
       <div className="mx-auto flex items-center justify-between px-4  sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>

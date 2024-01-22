@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Button, Input } from "../index";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { FilePenLine, Save, X } from "lucide-react";
 
-function Player({teamId, name, id, updatable = false , isAdmin}) {
+function Player({teamId, name, id, isNew = false , isAdmin = true}) {
     
   const {
     register,
@@ -18,26 +19,26 @@ function Player({teamId, name, id, updatable = false , isAdmin}) {
 
 
 
-  const [isEditable, setIsEditable] = useState(updatable);
-  const [admin, setAdmin] = useState(false);
+  const [isEditable, setIsEditable] = useState(isNew);
 
 
 // It will called whenever form is submited
-  async function submit() {
-    updatable = false
+  async function submit(data) {
+    if(!isEditable)
+      return
     try {
       //TODO : Call method for add team in database
 
 
-      setIsEditable(false)
       toast.success("Player Created Successfully")
+      setIsEditable(false)
     } catch (error) {
       toast.error(error);
     }
   }
 
 //  It will called when user want to edit the details
-  function editPlayer() {
+  function editPlayer(e) {
     setIsEditable(true)
   }
 
@@ -51,23 +52,25 @@ function Player({teamId, name, id, updatable = false , isAdmin}) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(submit)}>
+    <div className="flex flex-row m-2  items-center">
+      <form onSubmit={handleSubmit(submit)} className="flex flex-row items-center">
         <Input
+        divClass = "inline-block"
           placeholder="Enter player name"
-          default={name}
+          defaultValue={name}
           readOnly={!isEditable}
           {...register("name", {
             required: "Name is required",
           })}
         />
 
-        {isAdmin && isEditable && <Button type="submit">{updatable ? 'Create' : 'Update'}</Button>}
-        {isAdmin && (<Button type="submit" onClick={deletePlayer}>
-          Delete
-        </Button>)}
+        {isAdmin && isEditable && <Button type="submit" className="w-max" divClass="inline-block"><Save /></Button>}
+        
       </form>
-      {isAdmin && isEditable || <Button type="button" onClick= {editPlayer}>Edit</Button>}
+      <div>
+      {isAdmin && (isEditable || <Button type="button" onClick= {editPlayer} className=" w-max" divClass="inline-block"><FilePenLine /></Button>)}
+      {isAdmin && (  <Button type="button" onClick= {deletePlayer} className="w-max " divClass="inline-block"><X /></Button>)}
+      </div>
     </div>
   );
 }

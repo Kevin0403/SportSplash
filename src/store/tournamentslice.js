@@ -15,10 +15,15 @@ const tournamentSlice = createSlice({
 
         setIsAdmin : (state, action) => {
             state.isAdmin = action.payload
+        },
+
+        clear : (state) => {
+            state.isAdmin = false;
+            state.data = null;
         }
     }
 })
 
-export const {setData, setIsAdmin} = tournamentSlice.actions;
+export const {setData, setIsAdmin, clear} = tournamentSlice.actions;
 
 export default tournamentSlice.reducer;

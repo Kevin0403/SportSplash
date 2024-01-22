@@ -19,8 +19,8 @@ export default function TournamentHeader() {
   ];
 
   return (
-    <div className="relative w-full">
-      <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 px-8 border">
+    <div className="relative border">
+      <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 px-8 ">
         <div className="block">
           <ul className="inline-flex space-x-8">
             {menuItems.map((item) => (

@@ -3,20 +3,20 @@ import { Outlet, useParams } from 'react-router-dom'
 import {TournamentHeader} from '../index'
 
 function Tournament({
-    name,
+    tournamentName,
     isAdmin
 }) {
 
     return (
         <div>
             <div className=' flex pt-20 pb-10 items-center h-56 bg-[url("/SportSplash.png")] bg-no-repeat bg-cover'>
-                <div className='flex flex-row-reverse ms-6 bg-orange-300 align-bottom rounded-md'>
+                <div className='flex flex-row-reverse ms-6 backdrop-blur-sm align-bottom rounded-md'>
                     <div className='p-2 font-bold'>
-                        <h1 className=' text-4xl'>{name}</h1>
+                        <h1 className=' text-4xl'>{tournamentName}</h1>
                     </div>
-                    <div className='m-1 shadow-md h-20 w-20 bg-gray-500 '>
+                    {/* <div className='m-1 shadow-md h-20 w-20 bg-gray-500 '>
                         <img src='/SportSplash.png'  alt='home' />
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <TournamentHeader/>

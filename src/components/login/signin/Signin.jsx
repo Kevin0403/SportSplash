@@ -31,6 +31,7 @@ function Signin() {
       if(userData){
         dispatch(authLogin(userData));
         toast.success("Login Success");
+        navigate('/');
       }
     } catch (error) {
       toast.error(error.message);

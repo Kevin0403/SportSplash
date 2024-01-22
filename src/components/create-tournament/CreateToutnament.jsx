@@ -5,12 +5,15 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import authService from '../../connection/auth';
+import { setData, setIsAdmin } from '../../store/tournamentslice';
 
 function CreateTournament() {
 
     const { register, handleSubmit, formState: { errors} } = useForm();
 
     const user = useSelector((state) => state.auth.userData)
+
+    const dispatch = useDispatch()
 
     const navigate = useNavigate();
 
@@ -30,13 +33,15 @@ function CreateTournament() {
     const createTournament = async (data) => {
       try{
         const tournamentData =await authService.createTournament(data, user);
-        console.log(tournamentData)
         if(tournamentData){
+          dispatch(setData(tournamentData))
+          dispatch(setIsAdmin(true))
           toast.success("Tournament Created Successfully");
           navigate(`/tournament/${tournamentData.id}`);
         }
       }
       catch(error){
+        console.log(error)
         toast.error(error.message);
       }
     }

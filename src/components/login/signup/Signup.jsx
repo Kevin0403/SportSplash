@@ -32,8 +32,8 @@ function Signup() {
         userData = await authService.login(userData);
         if(userData){
             dispatch(authLogin(userData));
-            navigate("/signin")
             toast.success("Login Success");
+            navigate('/');
         }
       }
     } catch (error) {
