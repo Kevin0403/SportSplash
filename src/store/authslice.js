@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { clear } from "./tournamentslice";
 
 const initialState = {
     status : false,
@@ -12,11 +13,13 @@ const authSlice = createSlice({
         login: (state, action) => {
             state.status = true;
             state.userData = action.payload;
+            localStorage.setItem('user', JSON.stringify(state.userData))
         },
 
         logout: (state) => {
             state.status = false;
             state.userData = null;
+            localStorage.removeItem('user')
         }
     }
 })

@@ -39,7 +39,7 @@ const router = createBrowserRouter([
           )
         },
         {
-          path : '/tournament/:id',
+          path : '/tournament/:tournamentId',
           element : (
             <Protected authentication = {false}>
                 <Tournament/>
@@ -52,12 +52,12 @@ const router = createBrowserRouter([
                 element : <Teams/>
               },
               {
-                path : 'matches',
-                element : <h1>matches</h1>
+                path : 'teams',
+                element : <Teams />
               },
               {
-                path : 'teams',
-                element : <h1>teams</h1>
+                path : 'matches',
+                element : <h1>matches</h1>
               },
               {
                 path : 'prizes',

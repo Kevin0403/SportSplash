@@ -116,8 +116,9 @@ class Database {
   }
 
   // create tournament : that create and insert into tournament table
-  async createTournament(tournamentName, game, banner, teamSize, startDate, endDate, user, teams) {
+  async createTournament(tournamentName, game,  teamSize, startDate, endDate, user, teams) {
     try {
+
       const tournamentData = await axios
         .post(`${this.databaseUrl}/tournaments`, {
           user,
@@ -142,6 +143,110 @@ class Database {
       throw error;
     }
   }
+
+  // get tournament from tournament id
+  async getTournament(tournamentId) {
+    try {
+      const tournamentData = await axios
+        .get(`${this.databaseUrl}/getTournament/${tournamentId}`)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+        if ((tournamentData && tournamentData.error) || !tournamentData.user) {
+          throw new Error(tournamentData.error && "Not able to send request");
+        } else {
+          return tournamentData;
+        }
+      } catch (error) {
+        throw error;
+      }
+  }
+
+  // get all tournaments
+  async getAllTournaments() {
+    try {
+      const tournamentData = await axios
+        .get(`${this.databaseUrl}/getTournaments`)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (tournamentData.error) {
+        throw new Error(tournamentData.error);
+      } else {
+        return tournamentData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // get teams from tournament id
+  async getTeams(tournamentId) {
+    try {
+      const teamData = await axios
+        .get(`${this.databaseUrl}/tournament/${tournamentId}`, {
+          tournamentId,
+        })
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (teamData.error) {
+        throw new Error(teamData.error);
+      } else {
+        return teamData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // get all teams
+  async getAllTeams() {
+    try {
+      const teamData = await axios
+        .post(`${this.databaseUrl}/getAllTeams`)
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (teamData.error) {
+        throw new Error(teamData.error);
+      } else {
+        return teamData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // createTeam tha tadd entry in team table
+  async createTeam(name, id){
+    try {
+      const teamData = await axios.post(`${conf.databaseUrl}/team`, {
+        name,
+        tournament : {id}
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+  
+      if(teamData.error){
+        throw new Error(teamData.error);
+      }
+      else
+        return teamData;
+    } catch (error) {
+      throw error
+    }
+  }
+
 
   
 }

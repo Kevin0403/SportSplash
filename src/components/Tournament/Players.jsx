@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Button, Player } from "../index";
+import { useSelector } from "react-redux";
 
-function Players({ id, isAdmin }) {
+function Players({ id }) {
   const [data, setData] = useState([]);
-  const [admin, setAdmin] = useState(false);
 
+  const isAdmin = useSelector((state) => (state.tournament.isAdmin))
   // Fetch data of players and display it.
   useEffect(() => {
     setData([
@@ -40,7 +41,7 @@ function Players({ id, isAdmin }) {
           </li>
         ))}
       </ul>
-      <Button onClick={addTeam} className=' w-max m-1'>Add Player</Button>
+      {isAdmin && <Button onClick={addTeam} className=' w-max m-1'>Add Player</Button>}
     </div>
   );
 }

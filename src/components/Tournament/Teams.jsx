@@ -2,37 +2,45 @@ import React, { useState, useEffect } from "react";
 import authService from "../../connection/auth";
 import { useParams } from "react-router-dom";
 import { Button, Team } from "../index";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
-function Teams({isAdmin}) {
-  const { id } = useParams();
+function Teams() {
+  const { tournamentId } = useParams();
+  const isAdmin = useSelector((state) => (state.tournament.isAdmin))
 
   useEffect(() => {});
-
+  
   const [data, setData] = useState([]);
 
   useEffect(() => {
     //TODO: check whether user is admin or not
 
-    // async function fetchData(id) {
-    //   const data = await authService.getTeams(id);
-    //   setTeams(data);
-    // }
-    // fetchData(id);
+    async function fetchData(id) {
+      try{
+        const teams = await authService.getTeams(id);
+        setData(teams);
+      }
+      catch(error){
+        toast.error(error)
+      }
+    }
+    fetchData(tournamentId);
 
-    setData([
-      {
-        id: 1,
-        name: "team1",
-      },
-      {
-        id: 2,
-        name: "team2",
-      },
-      {
-        id: 3,
-        name: "team3",
-      },
-    ]);
+    // setData([
+    //   {
+    //     id: 1,
+    //     name: "team1",
+    //   },
+    //   {
+    //     id: 2,
+    //     name: "team2",
+    //   },
+    //   {
+    //     id: 3,
+    //     name: "team3",
+    //   },
+    // ]);
 
   }, []);
 
@@ -40,6 +48,7 @@ function Teams({isAdmin}) {
   function addTeam(){
     setData((data) => [...data, {name : "",isNew : true, id : data.length + 1}])
   }
+  
 
 
   return (
@@ -48,11 +57,11 @@ function Teams({isAdmin}) {
         {data.map((team) => (
           <li key={team.id} className=" w-full">
             {/* TODO : write this part after team component is created don't forget to pass isAdmin as args.*/}
-            <Team {...team} isadmin={isAdmin} />
+            <Team {...team} setData={setData} isadmin={isAdmin} />
           </li>
         ))}
       </ol>
-      <Button onClick= {addTeam}>Add Team</Button>
+      {isAdmin && <Button onClick= {addTeam}>Add Team</Button>}
     </div>
   );
 }

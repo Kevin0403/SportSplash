@@ -59,21 +59,36 @@ class Auth {
     async createTournament({
         tournamentName,
         game,
-        banner,
         teamSize,
         startDate,
         endDate,
-
         teams,
     }, user) {
         try {
-            return await this.database.createTournament(tournamentName, game, banner, teamSize, startDate, endDate, user, teams);
+            return await this.database.createTournament(tournamentName, game, teamSize, startDate, endDate, user, teams);
         }
         catch (error) {
             throw error;
         }
     }
 
+    // Get Tournament from tournament id
+    async getTournament(tournamentId) {
+        try {
+            return await this.database.getTournament(tournamentId);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    // Get Tournaments
+    async getTournaments() {
+        try {
+            return await this.database.getAllTournaments();
+        } catch (error) {
+            throw error;
+        }
+    }
 
     // Get Teams from tournament id
     async getTeams(tournamentId) {
@@ -81,6 +96,17 @@ class Auth {
             return await this.database.getTeams(tournamentId);
         } catch (error) {
             throw error;
+        }
+    }
+
+    // create Team function
+    async createTeam({
+        name
+    }, id){
+        try {
+            return this.database.createTeam(name, id);
+        } catch (error) {
+            throw error
         }
     }
 }

@@ -3,8 +3,11 @@ import { Button, Input } from "../index";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { FilePenLine, Save, X } from "lucide-react";
+import { useSelector } from "react-redux";
 
-function Player({teamId, name, id, isNew = false , isAdmin = true}) {
+function Player({teamId, name, id, isNew = false}) {
+
+  const isAdmin = useSelector((state) => (state.tournament.isAdmin))
     
   const {
     register,

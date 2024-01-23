@@ -5,12 +5,12 @@ import { NavLink } from "react-router-dom";
 export default function TournamentHeader() {
   const menuItems = [
     {
-      name: "Home",
+      name: "Teams",
       to: "teams",
     },
     {
-      name: "About",
-      to: "",
+      name: "Matches",
+      to: "matches",
     },
     {
       name: "Contact",

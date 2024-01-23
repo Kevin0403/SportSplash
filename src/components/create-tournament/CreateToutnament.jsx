@@ -41,7 +41,6 @@ function CreateTournament() {
         }
       }
       catch(error){
-        console.log(error)
         toast.error(error.message);
       }
     }
@@ -73,13 +72,13 @@ function CreateTournament() {
           })}
           />
 
-          <Input
+          {/* <Input
             label="Banner :"
             placeholder= "Upload Banner"
             type="file"
             accept="image/png, image/jpg, image/jpeg, image/gif"
             {...register("banner", { required: "Banner is required"})}
-          />
+          /> */}
 
           <div className='flex flex-row flex-wrap w-full'>
             <Input 

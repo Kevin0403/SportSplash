@@ -13,8 +13,10 @@ import Teams from "./Tournament/Teams";
 import Team from "./Tournament/Team";
 import Player from "./Tournament/Player";
 import Players from "./Tournament/players";
+import Card from "./Card";
 
 export {
+    Card,
     Player,
     Players,
     Team,

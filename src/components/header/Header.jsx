@@ -5,6 +5,7 @@ import Input from "../Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authslice";
+import { clear } from "../../store/tournamentslice";
 
 function Header() {
   const menuItems = [
@@ -30,6 +31,11 @@ function Header() {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const remove =() => {
+    dispatch(logout())
+    dispatch(clear())
+  }
 
   return (
     <div className=" z-20 fixed w-full bg-white">
@@ -63,7 +69,7 @@ function Header() {
         </div>
         <div className="hidden mx-2 lg:block">
           {authStatus && (
-            <Button onClick={() => dispatch(logout())} className="mx-2">
+            <Button onClick={remove} className="mx-2">
               Logout
             </Button>
           )}
@@ -115,7 +121,7 @@ function Header() {
                   <Button onClick={toggleMenu}>Create</Button>
                 </Link>
                 {authStatus && (
-                  <Button onClick={() => dispatch(logout())}>Logout</Button>
+                  <Button onClick={remove}>Logout</Button>
                 )}
               </div>
             </div>
