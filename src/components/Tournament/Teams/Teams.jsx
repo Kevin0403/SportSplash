@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import authService from "../../connection/auth";
+import authService from "../../../connection/auth";
 import { useParams } from "react-router-dom";
-import { Button, Team } from "../index";
+import { Button, Team } from "../../index";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 function Teams() {
   const { tournamentId } = useParams();
   const isAdmin = useSelector((state) => (state.tournament.isAdmin))
+
+  const maxTeams = useSelector((state) => state.tournament.data.teams)
 
   useEffect(() => {});
   
@@ -26,21 +28,6 @@ function Teams() {
       }
     }
     fetchData(tournamentId);
-
-    // setData([
-    //   {
-    //     id: 1,
-    //     name: "team1",
-    //   },
-    //   {
-    //     id: 2,
-    //     name: "team2",
-    //   },
-    //   {
-    //     id: 3,
-    //     name: "team3",
-    //   },
-    // ]);
 
   }, []);
 
@@ -61,7 +48,7 @@ function Teams() {
           </li>
         ))}
       </ol>
-      {isAdmin && <Button onClick= {addTeam}>Add Team</Button>}
+      {( data.length <= maxTeams) && isAdmin && <Button onClick= {addTeam}>Add Team</Button>}
     </div>
   );
 }

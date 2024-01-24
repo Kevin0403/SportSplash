@@ -99,12 +99,51 @@ class Auth {
         }
     }
 
+    // Get Players from team id
+    async getPlayers(teamId) {
+        try {
+            return await this.database.getPlayers(teamId);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
     // create Team function
     async createTeam({
         name
     }, id){
         try {
             return this.database.createTeam(name, id);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // create Player method
+    async createPlayer({
+        name
+    }, id){
+        try {
+            return this.database.createPlayer(name, id);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // delete player
+    async deletePlayer(id){
+        try {
+            return this.database.deletePlayer(id);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // delete team
+    async deleteTeam(id){
+        try {
+            return this.database.deleteTeam(id);
         } catch (error) {
             throw error
         }

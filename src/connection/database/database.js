@@ -206,26 +206,6 @@ class Database {
     }
   }
 
-  // get all teams
-  async getAllTeams() {
-    try {
-      const teamData = await axios
-        .post(`${this.databaseUrl}/getAllTeams`)
-        .then((response) => response.data)
-        .catch((error) => {
-          throw new Error(error.message);
-        });
-
-      if (teamData.error) {
-        throw new Error(teamData.error);
-      } else {
-        return teamData;
-      }
-    } catch (error) {
-      throw error;
-    }
-  }
-
   // createTeam tha tadd entry in team table
   async createTeam(name, id){
     try {
@@ -247,6 +227,105 @@ class Database {
     }
   }
 
+  // create team that adds data in team table
+  async createTeam(name, id){
+    try {
+      const teamData = await axios.post(`${conf.databaseUrl}/team`, {
+        name,
+        tournament : {id}
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+  
+      if(teamData.error){
+        throw new Error(teamData.error);
+      }
+      else
+        return teamData;
+    } catch (error) {
+      throw error
+    }
+  }
+
+  // get players from team id
+  async getPlayers(teamId){
+    try {
+      const playerData = await axios.get(`${conf.databaseUrl}/team/${teamId}`, {
+        teamId,
+      }).then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (playerData.error) {
+        throw new Error(playerData.error);
+      } else {
+        return playerData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // add player to team
+  async createPlayer(name, id){
+    try {
+      const teamData = await axios.post(`${conf.databaseUrl}/player`, {
+        name,
+        team : {
+          id
+        }
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+  
+      if(teamData.error){
+        throw new Error(teamData.error);
+      }
+      else
+        return teamData;
+    } catch (error) {
+      throw error
+    }
+  }
+
+  // delete player
+  async deletePlayer(id){
+    try {
+      const playerData = await axios.delete(`${conf.databaseUrl}/player/${id}`).then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (playerData.error) {
+        throw new Error(playerData.error);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // delete team
+  async deleteTeam(id){
+    try {
+      const teamData = await axios.delete(`${conf.databaseUrl}/team/${id}`).then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+
+      if (teamData.error) {
+        throw new Error(teamData.error);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
 
   
 }

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Players from "./players";
-import Button from "../Button";
+import React, { useState, useEffect } from "react";
+import Players from "../Players/Players";
+import Button from "../../Button";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { FilePenLine, Save, X } from "lucide-react";
-import { Input } from "../index";
+import { Input } from "../../index";
 import { useSelector } from "react-redux";
-import authService from '../../connection/auth'
+import authService from '../../../connection/auth'
 import { useParams } from "react-router-dom";
 
 function Team({ id, name, isNew, setData }) {
@@ -47,6 +47,7 @@ function Team({ id, name, isNew, setData }) {
         const teamData = await authService.createTeam(data, tournamentId) 
         setData((data) => data.map((data) => {
           if(data.id === id){
+            console.log(teamData)
             return teamData
           }
           return data
@@ -83,11 +84,26 @@ function Team({ id, name, isNew, setData }) {
     toogle();
     try {
       //TODO : Call method for add team in database
+      if(!isNew){
+      await authService.deleteTeam(id)
+    }
+      setData((data) => data.filter((data) => data.id !== id))
+      toast.success("Team Deleted Successfully")
 
     } catch (error) {
       toast.error(error);
     }
   }
+
+  const errorMessage = () =>{  
+    for (const error of Object.entries(errors)) {
+      toast.error(error[1].message);
+    }
+  }
+
+  useEffect(()=>{
+    errorMessage();
+  }, [errors])
 
   return (
     <div>
@@ -104,11 +120,15 @@ function Team({ id, name, isNew, setData }) {
             readOnly={!isEditable}
             {...register("name", {
               required: "Team name is required",
+              validate: {
+                matchPatern: (value) => /^[a-zA-Z0-9\s\-_]+$/.test(value) ||
+                "Enter a valid name",
+            }
             })}
           />
 
           {isAdmin && isEditable && (
-            <Button type="submit" className="w-max" divClass="inline-block">
+            <Button type="submit" className="w-max" onClick={errorMessage} divClass="inline-block">
               <Save />
             </Button>
           )}
