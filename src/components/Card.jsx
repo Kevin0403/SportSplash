@@ -14,8 +14,8 @@ function Card({ id, tournamentName, user, startDate, endDate }) {
         <h1 className="inline-flex items-center text-lg font-semibold">
           {tournamentName} &nbsp; <ArrowUpRight className="h-4 w-4" />
         </h1>
-        <p className="mt-3 text-sm text-gray-600">{user.university}</p>
-        <p className="mt-3 text-sm text-gray-600">
+        <p className="mt-3 text-sm text-gray-600">{`University : ${user.university}`}</p>
+        <p className="mt-1 text-sm text-gray-600">
           {`Start Date :- ${new Date(startDate).toDateString()}`}
         </p>
         <Link to={`/tournament/${id}`}>
