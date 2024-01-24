@@ -327,6 +327,35 @@ class Database {
     }
   }
 
+  // crete bedmintan match
+  async createBedmintanMatch(team1, team2, stime, tournamentId){
+    try {
+      const matchData = await axios.post(`${conf.databaseUrl}/create`, {
+        team1 : {
+          id : team1
+        },
+        team2 : {
+          id : team2
+        },
+        stime,
+        tournament : {
+          id : tournamentId
+        }
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+  
+      if(matchData.error){
+        throw new Error(matchData.error);
+      }
+      else
+        return matchData;
+    } catch (error) {
+      throw error
+    }
+  }
+
   
 }
 

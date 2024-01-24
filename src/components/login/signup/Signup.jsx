@@ -14,6 +14,25 @@ function Signup() {
   const { register, handleSubmit, formState: { errors} } = useForm();
   const dispatch = useDispatch();
 
+  const collages = [
+    {
+      id : 1,
+      value : "DDU"
+    },
+    {
+      id : 2,
+      value : "NIRMA"
+    },
+    {
+      id : 3,
+      value : "IIT Madras"
+    },
+    {
+      id : 4,
+      value : "IIT Kharagpur"
+    },
+  ]
+
   const errorMessage = () =>{
     for (const error of Object.entries(errors)) {
       toast.error(error[1].message);
@@ -105,7 +124,7 @@ function Signup() {
           })}
           />
           <Select
-            options={["DDU", "Nirma"]}
+            options={collages}
             label="College"
             {...register("university", {
               required: "College is required",

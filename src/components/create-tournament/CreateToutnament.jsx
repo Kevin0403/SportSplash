@@ -17,7 +17,33 @@ function CreateTournament() {
 
     const navigate = useNavigate();
 
-    const Games = ["Cricket", "Bedmintan", "Table Tennis"]
+    const Games = [
+      {
+        id : 1,
+        value : "Cricket"
+      },
+      {
+        id : 2,
+        value : "Football"
+      },
+      {
+        id : 3,
+        value : "Basketball"
+      },
+      {
+        id : 4,
+        value : "Volleyball"
+      },
+      {
+        id : 5,
+        value : "Badminton"
+      },
+      {
+        id : 6,
+        value : "Table Tennis"
+      }
+      
+    ]
 
     const errorMessage = () =>{
       for (const error of Object.entries(errors)) {

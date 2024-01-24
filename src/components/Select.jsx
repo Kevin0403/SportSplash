@@ -1,10 +1,10 @@
 import React, { useId } from "react";
 
-function Select({ className = "", options, label, ...props }, ref) {
+function Select({ divClass = '', className = "", options, label, setbyid  = false, ...props }, ref) {
   const id = useId();
 
   return (
-    <div className="">
+    <div className={`${divClass}`}>
       {label && (
         <label htmlFor={id} className="text-base font-medium text-gray-900">
           {label}
@@ -18,8 +18,8 @@ function Select({ className = "", options, label, ...props }, ref) {
           ref={ref}
         >
           {options?.map((option) => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.id} value={setbyid ? option.id : option.value}>
+              {option.value}
             </option>
           ))}
         </select>

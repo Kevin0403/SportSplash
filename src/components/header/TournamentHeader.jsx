@@ -13,8 +13,8 @@ export default function TournamentHeader() {
       to: "matches",
     },
     {
-      name: "Contact",
-      to: "",
+      name: "Create-Match",
+      to: "create-match",
     },
   ];
 

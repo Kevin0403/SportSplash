@@ -114,7 +114,7 @@ class Auth {
         name
     }, id){
         try {
-            return this.database.createTeam(name, id);
+            return await this.database.createTeam(name, id);
         } catch (error) {
             throw error
         }
@@ -125,7 +125,7 @@ class Auth {
         name
     }, id){
         try {
-            return this.database.createPlayer(name, id);
+            return await this.database.createPlayer(name, id);
         } catch (error) {
             throw error
         }
@@ -134,7 +134,7 @@ class Auth {
     // delete player
     async deletePlayer(id){
         try {
-            return this.database.deletePlayer(id);
+            return await this.database.deletePlayer(id);
         } catch (error) {
             throw error
         }
@@ -143,7 +143,20 @@ class Auth {
     // delete team
     async deleteTeam(id){
         try {
-            return this.database.deleteTeam(id);
+            return await this.database.deleteTeam(id);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // crete bedmintan match 
+    async createBedmintanMatch({
+        team1,
+        team2,
+        stime
+    }, tournamentId){
+        try {
+            return await this.database.createBedmintanMatch(team1, team2, stime, tournamentId);
         } catch (error) {
             throw error
         }
