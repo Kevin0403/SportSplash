@@ -40,19 +40,26 @@ function Player({ team, name, id, isNew = false, setData }) {
         );
         toast.success("Player Created Successfully");
       } else {
-        //TODO : Call method for change team in database
-        // const playerData = await authService.updatePlayer(data, teamId)
-        // setData((data) => data.map((data) => {
-        //   if(data.id === id){
-        //     return playerData
-        //   }
-        //   return data
-        // }))
+        // TODO : Call method for change team in database
+        const updatedVal = {
+          id,
+          name : data.name,
+          team
+        }
+        const playerData = await authService.updatePlayer(updatedVal)
+        setData((data) => data.map((data) => {
+          if(data.id === id){
+            return playerData
+          }
+          return data
+        }))
+        toast.success("Player Updated Successfully");
       }
 
       setIsEditable(false);
     } catch (error) {
-      toast.error(error);
+      // console.log(error)
+      toast.error(error.message);
     }
   }
 

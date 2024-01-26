@@ -21,7 +21,7 @@ function Home() {
 
   return data ? (
     <div>
-      <ul className="flex ">
+      <ul className="flex flex-wrap justify-center">
         {data.map((tournament) => {
           return (
             <li key={tournament.id}>

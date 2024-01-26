@@ -248,6 +248,23 @@ class Database {
     }
   }
 
+  // update team
+  async updateTeam(team){
+    try {
+      const teamData = await axios.put(`${conf.databaseUrl}/team`, team).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      }) 
+      if (teamData.error) {
+        throw new Error(teamData.error);
+      } else {
+        return teamData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // get players from team id
   async getPlayers(teamId){
     try {
@@ -291,6 +308,25 @@ class Database {
     }
   }
 
+  // update Player
+  async updatePlayer(player){
+    try {
+      const playerData = await axios.put(`${conf.databaseUrl}/player`, player).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+
+      if(playerData.error){
+        throw new Error(playerData.error);
+      }
+      else
+        return playerData;
+    }
+    catch(error){
+      throw error
+    }
+  }
+
   // delete player
   async deletePlayer(id){
     try {
@@ -328,7 +364,7 @@ class Database {
   }
 
   // crete bedmintan match
-  async createBedmintanMatch(team1, team2, stime, tournamentId){
+  async createBedmintanMatch(team1, team2,startDate, startTime, tournamentId){
     try {
       const matchData = await axios.post(`${conf.databaseUrl}/create`, {
         team1 : {
@@ -337,7 +373,8 @@ class Database {
         team2 : {
           id : team2
         },
-        stime,
+        startTime,
+        startDate,
         tournament : {
           id : tournamentId
         }
@@ -355,6 +392,64 @@ class Database {
       throw error
     }
   }
+
+  // get bedmintan match
+  async getMatches(id){
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/tournamentmatch/${id}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return matchData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // delete bedmintan match
+  async deleteBedmintanMatch(matchId){
+    try {
+      const matchData = await axios.delete(`${conf.databaseUrl}/match/${matchId}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // update Bedmintan Match
+  async updateBedmintanMatch(
+    match
+  ){
+    try {
+      const matchData = await axios.put(`${conf.databaseUrl}/badmintonMatch`,
+        match).then((response) => response.data)
+      .catch((error) => {
+        throw error
+      });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+  
 
   
 }

@@ -1,11 +1,28 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { Button } from "../../index";
+import authService from '../../../connection/auth'
+import { toast } from "react-toastify";
 
-function MatchCard({
-  id,
-  team1,
-  team2,
-  stime,
-}) {
+function MatchCard({match, setData}) {
+  const isAdmin = useSelector((state) => state.tournament.isAdmin);
+  const { tournamentId } = useParams();
+
+  const deleteMatch = async () => {
+    try{
+      const data = await authService.deleteBedmintanMatch(match.id)
+      if(data){
+        setData((data) => data.filter((data) => (data.id != match.id)))
+        toast.success('Match Deleted Successfully')
+      }
+    }catch(error){
+      console.log(error)
+      toast.error(error.message)
+    }
+    
+  }
+
   return (
     <div className="w-[300px] rounded-md border bg-slate-300 m-1">
       {/* <img
@@ -15,26 +32,31 @@ function MatchCard({
       /> */}
       <div className="p-4">
         <h1 className="inline-flex items-center text-lg font-semibold">
-          {team1.name}
+          {match.team1.name}
         </h1>
         <p className="m-1 text-sm text-gray-600">vs</p>
         <h1 className="inline-flex items-center text-lg font-semibold">
-          {team2.name}
+          {match.team2.name}
         </h1>
         <p className="mt-1 text-sm text-gray-600">
-          {`Start Date :- ${new Date(stime).totimeString()}`}
+          {`Start Date :- ${match.startDate}`}
         </p>
-        <Link to={`/tournament/${id}`}>
-          <button
-            type="button"
-            className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Read
-          </button>
+        <p className="mt-1 text-sm text-gray-600">
+          {`Start Date :- ${match.startTime}`}
+        </p>
+        <Link to={`/match/${match.id}`}>
+          <Button type="button">Read</Button>
         </Link>
+        {isAdmin && (
+          <Link to={`/tournament/${tournamentId}/create-match`} state={match}>
+            <Button type="button">Update</Button>
+          </Link>
+        )}
+
+        {isAdmin && <Button type="button" onClick = {deleteMatch}>Delete</Button>}
       </div>
     </div>
-  )
+  );
 }
 
-export default MatchCard
+export default MatchCard;

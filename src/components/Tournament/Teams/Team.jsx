@@ -47,15 +47,22 @@ function Team({ id, name, isNew, setData }) {
         const teamData = await authService.createTeam(data, tournamentId) 
         setData((data) => data.map((data) => {
           if(data.id === id){
-            console.log(teamData)
             return teamData
           }
           return data
         }))
+      toast.success("Team Created Successfully");
       }
       else{
         //TODO : Call method for change team in database
-        const teamData = await authService.updateTeam(data, tournamentId)
+        const updatedVal = {
+          id,
+          name : data.name,
+          tournament : {
+            id : tournamentId
+          }
+        }
+        const teamData = await authService.updateTeam(updatedVal)
         setData((data) => data.map((data) => {
           if(data.id === id){
             return teamData
@@ -63,13 +70,14 @@ function Team({ id, name, isNew, setData }) {
           return data
         }))
         
+        toast.success("team Updated Successfully")
       }
 
 
       setIsEditable(false);
-      toast.success("Team Created Successfully");
     } catch (error) {
-      toast.error(error);
+      console.log(error)
+      toast.error(error.message);
     }
   }
 

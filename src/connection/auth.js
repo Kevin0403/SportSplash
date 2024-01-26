@@ -120,12 +120,30 @@ class Auth {
         }
     }
 
+    // update team
+    async updateTeam(team){
+        try {
+            return await this.database.updateTeam(team);
+        } catch (error) {
+            throw error
+        }
+    }
+
     // create Player method
     async createPlayer({
         name
     }, id){
         try {
             return await this.database.createPlayer(name, id);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    //update Player
+    async updatePlayer(player){
+        try {
+            return await this.database.updatePlayer(player);
         } catch (error) {
             throw error
         }
@@ -153,14 +171,45 @@ class Auth {
     async createBedmintanMatch({
         team1,
         team2,
-        stime
+        startTime,
+        startDate
     }, tournamentId){
         try {
-            return await this.database.createBedmintanMatch(team1, team2, stime, tournamentId);
+            return await this.database.createBedmintanMatch(team1, team2,startDate, startTime, tournamentId);
         } catch (error) {
             throw error
         }
     }
+
+    //update Bedmintan Match
+    async updateBedmintanMatch(
+        match
+    ){
+        try {
+            return await this.database.updateBedmintanMatch(match);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // fetch matches from database
+    async getMatches(tournamentId){
+        try {
+            return await this.database.getMatches(tournamentId);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    //delete bedmintan match
+    async deleteBedmintanMatch(matchId){
+        try {
+            return await this.database.deleteBedmintanMatch(matchId)
+        } catch (error) {
+            throw error
+        }
+    }
+
 }
 
 const auth = new Auth();

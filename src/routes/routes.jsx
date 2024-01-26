@@ -2,7 +2,7 @@ import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
 import { Home, Signin, Signup, CreateTournament, Tournament, About } from '../pages'
-import { CreateMatch, Protected, Team, Teams} from '../components'
+import { CreateMatch, Matches, Protected, Team, Teams} from '../components'
 import { Contact } from 'lucide-react'
 
 const router = createBrowserRouter([
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
               },
               {
                 path : 'matches',
-                element : <h1>matches</h1>
+                element : <Matches />
               },
               {
                 path : 'prizes',

@@ -60,7 +60,7 @@ function Header() {
           </ul>
         </div>
         <div className="flex grow justify-end items-center">
-          <Input placeholder="Search" type="text" />
+          {/* <Input placeholder="Search" type="text" /> */}
         </div>
         <div className="hidden mx-2 lg:block">
           <Link to="/create-tournament">
