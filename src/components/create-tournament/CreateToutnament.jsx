@@ -1,7 +1,7 @@
 import React , {useEffect}from 'react';
 import { useForm } from "react-hook-form";
 import { Input, Button, Select } from '../index';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import authService from '../../connection/auth';
@@ -13,37 +13,11 @@ function CreateTournament() {
 
     const user = useSelector((state) => state.auth.userData)
 
+    const {game} = useParams()
+
     const dispatch = useDispatch()
 
     const navigate = useNavigate();
-
-    const Games = [
-      {
-        id : 1,
-        value : "Cricket"
-      },
-      {
-        id : 2,
-        value : "Football"
-      },
-      {
-        id : 3,
-        value : "Basketball"
-      },
-      {
-        id : 4,
-        value : "Volleyball"
-      },
-      {
-        id : 5,
-        value : "Badminton"
-      },
-      {
-        id : 6,
-        value : "Table Tennis"
-      }
-      
-    ]
 
     const errorMessage = () =>{
       for (const error of Object.entries(errors)) {
@@ -58,7 +32,7 @@ function CreateTournament() {
 
     const createTournament = async (data) => {
       try{
-        const tournamentData =await authService.createTournament(data, user);
+        const tournamentData =await authService.createTournament({...data, game}, user);
         if(tournamentData){
           dispatch(setData(tournamentData))
           dispatch(setIsAdmin(true))
@@ -81,14 +55,6 @@ function CreateTournament() {
         </h2>
         
         <form onSubmit={handleSubmit(createTournament)} className="mt-8">
-
-        <Select
-            options={Games}
-            // label="game"
-            {...register("game", {
-              required: "Game is required is required",
-            })}
-          />
           <Input 
           label="Tourament Name"
           placeholder="Tournament Name"

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 function Matches() {
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState()
   const {tournamentId} = useParams()
 
   
@@ -23,16 +23,20 @@ function Matches() {
       fetch(tournamentId)
   }, [])
 
-  return data.length ? (
+  return data ? (
     <div>
       <ul className="flex ">
-        {data.map((match) => {
+        {data.length > 0 ? data.map((match) => {
           return (
             <li key={match.id}>
               <MatchCard match = {match} setData = {setData} />
             </li>
           );
-        })}
+        }) : (
+          <div className='w-full text-center text-2xl start-4 '>
+            <h1 className=' text-warning'>No Matches Found</h1>
+          </div>
+        )}
       </ul>
     </div>
   ) : (

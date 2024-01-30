@@ -18,11 +18,11 @@ function App() {
   }
 
   return (
-    <div className=' w-full block'>
+    <div className=' bg-common w-full block min-h-screen text-common'>
 
         <ToastContainer />
         <Header />
-        <main className='pt-14'>
+        <main className='pt-10'>
           <Outlet />
         </main>
         <Footer />

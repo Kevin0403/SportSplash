@@ -23,8 +23,9 @@ function MatchCard({match, setData}) {
     
   }
 
-  return (
-    <div className="w-[300px] rounded-md border bg-slate-300 m-1">
+  return (<>
+    <Link to={`/match/${match.id}`}>
+    <div className="w-[300px] rounded-md border bg-card m-1">
       {/* <img
         src={`/banner.png`}
         alt="Laptop"
@@ -34,19 +35,16 @@ function MatchCard({match, setData}) {
         <h1 className="inline-flex items-center text-lg font-semibold">
           {match.team1.name}
         </h1>
-        <p className="m-1 text-sm text-gray-600">vs</p>
+        <p className="m-1 text-sm ">vs</p>
         <h1 className="inline-flex items-center text-lg font-semibold">
           {match.team2.name}
         </h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm ">
           {`Start Date :- ${match.startDate}`}
         </p>
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm ">
           {`Start Date :- ${match.startTime}`}
         </p>
-        <Link to={`/match/${match.id}`}>
-          <Button type="button">Read</Button>
-        </Link>
         {isAdmin && (
           <Link to={`/tournament/${tournamentId}/create-match`} state={match}>
             <Button type="button">Update</Button>
@@ -56,6 +54,10 @@ function MatchCard({match, setData}) {
         {isAdmin && <Button type="button" onClick = {deleteMatch}>Delete</Button>}
       </div>
     </div>
+        </Link>
+
+  </>  
+
   );
 }
 

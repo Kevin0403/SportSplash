@@ -5,7 +5,7 @@ import Input from "../Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authslice";
-import { clear } from "../../store/tournamentslice";
+import { clear, setIsAdmin } from "../../store/tournamentslice";
 
 function Header() {
   const menuItems = [
@@ -34,11 +34,11 @@ function Header() {
 
   const remove =() => {
     dispatch(logout())
-    dispatch(clear())
+    dispatch(setIsAdmin(false))
   }
 
   return (
-    <div className=" z-20 fixed w-full bg-white">
+    <div className="bg-navbar z-20 fixed w-full">
       <div className="mx-auto flex items-center justify-between px-4  sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <span>
@@ -51,7 +51,7 @@ function Header() {
               <li key={item.name}>
                 <NavLink
                   to={item.to}
-                  className=" text-lg font-semibold text-gray-800 hover:text-gray-900"
+                  className=" text-lg font-semibold text-nav hover:text-nav-hover"
                 >
                   {item.name}
                 </NavLink>

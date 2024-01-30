@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import authService from '../connection/auth';
 
-export default function Protected({children, authentication = true}){
+export default function Protected({children, authentication = true, restricted = false}){
 
     const navigate = useNavigate()
     const [loader, setLoader ] = useState(true)
@@ -14,6 +14,9 @@ export default function Protected({children, authentication = true}){
         if(authentication && authStatus != authentication){
             navigate('/signin')
         } 
+        if(restricted && authStatus != authentication){
+            navigate('/')
+        }
         setLoader(false)
     }, [authStatus, navigate, authentication])
 

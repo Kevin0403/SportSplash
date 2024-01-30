@@ -96,7 +96,7 @@ function CreateMatch() {
             <Select
             label = 'Team 2'
             setbyid = {true}
-            defaultValue = {match?.team2?.id }
+            defaultValue = {match?.team2?.name }
             divClass = " basis-1/2 pr-2"
               options={teams.map((team) => ({
                 id: team.id,
@@ -108,7 +108,7 @@ function CreateMatch() {
             />
           </div>
 
-          <div className='flex flex-row flex-wrap w-full'>
+          <div className='flex flex-row flex-grow flex-wrap w-full'>
             <Input 
               label = "Start-Date"
               placeholder = ""
@@ -124,7 +124,7 @@ function CreateMatch() {
               placeholder = "time"
               type = 'time'
               defaultValue = {(match?.startTime)  || ''}
-              divClass = "basis-1/2 "
+              divClass = "basis-1/2 pr-2 "
               {...register("startTime", {
                 required: "Start Time is required"
               })}

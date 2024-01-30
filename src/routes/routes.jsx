@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
-import { Home, Signin, Signup, CreateTournament, Tournament, About } from '../pages'
-import { CreateMatch, Matches, Protected, Team, Teams} from '../components'
+import { Home, Signin, Signup, CreateTournament, Tournament, About, Match } from '../pages'
+import { CreateMatch, Games, Matches, Protected, Team, Teams} from '../components'
 import { Contact } from 'lucide-react'
 
 const router = createBrowserRouter([
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         {
           path : '/signin',
           element :(
-            <Protected authentication = {false}>
+            <Protected authentication = {false} restricted>
               <Signin/>
             </Protected>
           )
@@ -25,13 +25,21 @@ const router = createBrowserRouter([
         {
           path : '/signup',
           element :(
-            <Protected authentication = {false}>
+            <Protected authentication = {false} restricted>
               <Signup/> 
             </Protected>
           )
         },
         {
           path : '/create-tournament',
+          element : (
+            <Protected authentication>
+                <Games/>
+            </Protected>
+          )
+        },
+        {
+          path : '/create-tournament/:game',
           element : (
             <Protected authentication>
                 <CreateTournament/>
@@ -74,6 +82,14 @@ const router = createBrowserRouter([
               </Protected>)
               }
             ]
+          )
+        },
+        {
+          path : 'match/:matchId',
+          element : (
+            <Protected authentication = {false}>
+              <Match/>
+            </Protected>
           )
         },
         {

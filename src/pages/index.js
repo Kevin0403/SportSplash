@@ -5,8 +5,10 @@ import Home from "./Home";
 import Tournament from "./Tournament";
 import Contact from "./Contact";
 import About from "./About";
+import Match from "./Match";
 
 export {
+    Match,
     About,
     Contact,
     Tournament,

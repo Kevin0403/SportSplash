@@ -17,8 +17,12 @@ import Card from "./Card";
 import CreateMatch from "./Tournament/Matches/CreateMatch";
 import Matches from "./Tournament/Matches/Matches";
 import MatchCard from "./Tournament/Matches/MatchCard";
+import GameCard from "./create-tournament/GameCard";
+import Games from "./create-tournament/Games";
 
 export {
+    Games,
+    GameCard,
     MatchCard,
     Matches,
     CreateMatch,
