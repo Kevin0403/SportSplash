@@ -411,6 +411,24 @@ class Database {
     }
   }
 
+  // fetch bedmintan match
+  async getBedmintanMatch(id){
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/match/${id}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return matchData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // delete bedmintan match
   async deleteBedmintanMatch(matchId){
     try {
@@ -449,7 +467,28 @@ class Database {
       throw error;
     }
   }
-  
+
+
+
+
+
+
+
+
+
+
+  // *******************************************************************************
+  // ------------- Socket ------------------------
+  // *******************************************************************************
+
+  //create websocket for match
+  async createWebSocket(matchId){
+    try {
+      return await io(`${conf.databaseUrl}/match/${matchId}`)
+    } catch (error) {
+      throw error
+    }
+  }
 
   
 }

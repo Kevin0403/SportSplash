@@ -1,8 +1,9 @@
 import React from 'react'
+import { Match as MatchComponent } from '../components'
 
 function Match() {
   return (
-    <div>Match</div>
+    <MatchComponent />
   )
 }
 

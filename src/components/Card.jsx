@@ -6,7 +6,7 @@ function Card({ id, tournamentName, user, startDate, endDate, game }) {
   return (
 <Link to={`/tournament/${id}`}>
     <div className="w-[230px] rounded-2xl border shadow-lg bg-card m-1 hover:bg-card-hover">
-      <h1 className="text-center w-full rounded-t-lg text-lg font-semibold bg-navbar">
+      <h1 className="text-center w-full rounded-t-lg text-lg font-semibold bg-card-header">
           {game} 
         </h1>
       <img

@@ -11,12 +11,13 @@ export default {
   theme: {
     extend: {
       backgroundColor: {
-        'common': '#DCF2F1',
-         'navbar' : '#249dbc',
-         'button' : '#0F1035',
-         'button-hover' : '#091B61',
-         'card' : 'white',
-          'card-hover' : '#DCF2F1',
+        'common': '#ecf2fc',
+         'navbar' : '#6190E6',
+         'button' : '#061125',
+         'button-hover' : '#02060e',
+         'card' : '#d1dff8',
+         'card-header' : '#6190E6',
+          'card-hover' : '#ecf2fc',
       },
       textColor: {
         'warning' : 'red',

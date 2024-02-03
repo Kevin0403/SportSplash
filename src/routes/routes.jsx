@@ -2,8 +2,9 @@ import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
 import { Home, Signin, Signup, CreateTournament, Tournament, About, Match } from '../pages'
-import { CreateMatch, Games, Matches, Protected, Team, Teams} from '../components'
+import { CreateMatch, SelectGames, Matches, Protected, Team, Teams} from '../components'
 import { Contact } from 'lucide-react'
+import {TournamentContextProvider} from '../context/TournamentContextProvider'
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
           path : '/create-tournament',
           element : (
             <Protected authentication>
-                <Games/>
+                <SelectGames/>
             </Protected>
           )
         },
@@ -50,7 +51,9 @@ const router = createBrowserRouter([
           path : '/tournament/:tournamentId',
           element : (
             <Protected authentication = {false}>
+              <TournamentContextProvider>
                 <Tournament/>
+              </TournamentContextProvider>
             </Protected>
           ),
           children : (

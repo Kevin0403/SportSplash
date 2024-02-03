@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import authService from "../../../connection/auth";
 import { useParams } from "react-router-dom";
 import { Button, Team } from "../../index";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function Teams() {
   const { tournamentId } = useParams();
-  const isAdmin = useSelector((state) => (state.tournament.isAdmin))
+  const isAdmin = useContext(TournamentContext).isAdmin;
 
-  const maxTeams = useSelector((state) => state.tournament.data.teams)
+  const maxTeams = useContext(TournamentContext).tournament.teams;
 
   useEffect(() => {});
   

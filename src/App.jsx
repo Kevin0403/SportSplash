@@ -23,6 +23,7 @@ function App() {
         <ToastContainer />
         <Header />
         <main className='pt-10'>
+          {/* <Sidebar /> */}
           <Outlet />
         </main>
         <Footer />

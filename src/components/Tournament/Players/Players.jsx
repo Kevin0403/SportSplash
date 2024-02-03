@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Player } from "../../index";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import authService from "../../../connection/auth";
+import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function Players({ id }) {
   const [data, setData] = useState();
 
-  const isAdmin = useSelector((state) => state.tournament.isAdmin);
+  const isAdmin = useContext(TournamentContext).isAdmin;
 
-  const teamSize = useSelector((state) => state.tournament.data.teamSize)
+  const teamSize = useContext(TournamentContext).tournament.teamSize;
   // Fetch data of players and display it.
   useEffect(() => {
     async function fetchData(id) {
@@ -57,11 +58,11 @@ function Players({ id }) {
           </li>
         )) : (
           <div className='w-full text-center text-xl start-4 '>
-            <h1 className=' text-warning'>No Teams Found</h1>
+            <h1 className=' text-warning'>No Players Found</h1>
           </div>
         )}
       </ul>
-      {(data.length < teamSize) && isAdmin && (
+      {teamSize && (data.length < teamSize) && isAdmin && (
         <Button onClick={addPlayer} className=" w-max m-1">
           Add Player
         </Button>

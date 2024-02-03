@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Input } from "../../index";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
@@ -6,9 +6,10 @@ import { FilePenLine, Save, X } from "lucide-react";
 import { useSelector } from "react-redux";
 import authService from "../../../connection/auth";
 import { useParams } from "react-router-dom";
+import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function Player({ team, name, id, isNew = false, setData }) {
-  const isAdmin = useSelector((state) => state.tournament.isAdmin);
+  const isAdmin = useContext(TournamentContext).isAdmin;
   const {
     register,
     handleSubmit,

@@ -18,7 +18,7 @@ function Select({ divClass = '', className = "", options, label, setbyid  = fals
           ref={ref}
         >
           {options?.map((option) => (
-            <option key={option.id} value={setbyid ? option.id : option.value } selected={option.value === defaultValue} >
+            <option key={option.id} value={setbyid ? option.id : option.value } selected={option.id === defaultValue} >
               {option.value}
             </option>
           ))}

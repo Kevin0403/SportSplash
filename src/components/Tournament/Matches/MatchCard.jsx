@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../../index";
 import authService from '../../../connection/auth'
 import { toast } from "react-toastify";
+import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function MatchCard({match, setData}) {
-  const isAdmin = useSelector((state) => state.tournament.isAdmin);
+  const isAdmin = useContext(TournamentContext).isAdmin;
   const { tournamentId } = useParams();
 
   const deleteMatch = async () => {

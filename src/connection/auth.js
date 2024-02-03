@@ -201,6 +201,15 @@ class Auth {
         }
     }
 
+    // fetch bedmintan matches from database
+    async getBedmintanMatch(tournamentId){
+        try {
+            return await this.database.getBedmintanMatch(tournamentId);
+        } catch (error) {
+            throw error
+        }
+    }
+
     //delete bedmintan match
     async deleteBedmintanMatch(matchId){
         try {
@@ -209,6 +218,17 @@ class Auth {
             throw error
         }
     }
+
+
+
+
+    async createWebSocket(matchId){
+        try {
+          return await this.database.createWebSocket(matchId);
+        } catch (error) {
+          throw error
+        }
+      }
 
 }
 
