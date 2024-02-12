@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { clear } from "./tournamentslice";
 
 const initialState = {
     status : false,

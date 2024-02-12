@@ -1,10 +1,11 @@
 import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
-import { Home, Signin, Signup, CreateTournament, Tournament, About, Match } from '../pages'
-import { CreateMatch, SelectGames, Matches, Protected, Team, Teams} from '../components'
+import { Home, Signin, Signup, CreateTournament, Tournament, About, Match, Create } from '../pages'
+import { CreateMatch, SelectGames, Matches, Protected, Team, Teams, SelectCreateOption} from '../components'
 import { Contact } from 'lucide-react'
 import {TournamentContextProvider} from '../context/TournamentContextProvider'
+import { MatchContextProvider } from '../context/MatchContextProvider'
 
 const router = createBrowserRouter([
     {
@@ -32,19 +33,39 @@ const router = createBrowserRouter([
           )
         },
         {
-          path : '/create-tournament',
+          path : '/create',
           element : (
             <Protected authentication>
-                <SelectGames/>
+                <Create/>
             </Protected>
-          )
-        },
-        {
-          path : '/create-tournament/:game',
-          element : (
-            <Protected authentication>
-                <CreateTournament/>
-            </Protected>
+          ),
+          children:(
+            [
+              {
+                path : '',
+                element : (
+                  <SelectCreateOption />
+                )
+              },
+              {
+                path : 'match',
+                element : (
+                  <Home/>
+                )
+              },
+              {
+                path : 'tournament',
+                element : (
+                  <SelectGames />
+                )
+              },
+              {
+                path : 'tournament/:game',
+                element : (
+                  <CreateTournament/>
+                )
+              }
+            ]
           )
         },
         {
@@ -88,10 +109,12 @@ const router = createBrowserRouter([
           )
         },
         {
-          path : 'match/:matchId',
+          path : '/match/:game/:matchId',
           element : (
             <Protected authentication = {false}>
+              <MatchContextProvider>
               <Match/>
+              </MatchContextProvider>
             </Protected>
           )
         },

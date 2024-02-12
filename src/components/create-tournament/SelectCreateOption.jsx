@@ -18,7 +18,7 @@ function SelectCreateOption() {
   return (
     <div className="flex flex-wrap gap-4 p-20 w-full h-max justify-center items-center">
       {Option.map((game) => (
-        <NameCard key={game.id} name={game} linkPrefix={'create'}/>
+        <NameCard key={game.id} name={game}/>
       ))}
     </div>
   );

@@ -5,7 +5,6 @@ import Input from "../Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authslice";
-import { clear, setIsAdmin } from "../../store/tournamentslice";
 
 function Header() {
   const menuItems = [
@@ -34,7 +33,6 @@ function Header() {
 
   const remove =() => {
     dispatch(logout())
-    dispatch(setIsAdmin(false))
   }
 
   return (
@@ -63,7 +61,7 @@ function Header() {
           {/* <Input placeholder="Search" type="text" /> */}
         </div>
         <div className="hidden mx-2 lg:block">
-          <Link to="/create-tournament">
+          <Link to="/create">
             <Button className="mx-2">Create</Button>
           </Link>
         </div>

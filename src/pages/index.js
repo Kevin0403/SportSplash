@@ -6,8 +6,10 @@ import Tournament from "./Tournament";
 import Contact from "./Contact";
 import About from "./About";
 import Match from "./Match";
+import Create from './Create'
 
 export {
+    Create,
     Match,
     About,
     Contact,

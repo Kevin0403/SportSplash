@@ -77,7 +77,6 @@ function Team({ id, name, isNew, setData }) {
 
       setIsEditable(false);
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   }

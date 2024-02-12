@@ -33,7 +33,6 @@ function Player({ team, name, id, isNew = false, setData }) {
         setData((data) =>
           data.map((data) => {
             if (data.id === id) {
-              console.log(playerData);
               return playerData;
             }
             return data;
@@ -59,7 +58,6 @@ function Player({ team, name, id, isNew = false, setData }) {
 
       setIsEditable(false);
     } catch (error) {
-      // console.log(error)
       toast.error(error.message);
     }
   }

@@ -15,7 +15,7 @@ export default {
          'navbar' : '#6190E6',
          'button' : '#061125',
          'button-hover' : '#02060e',
-         'card' : '#d1dff8',
+         'card' : '#ffffff',
          'card-header' : '#6190E6',
           'card-hover' : '#ecf2fc',
       },

@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import authService from '../../connection/auth';
-import { setData, setIsAdmin } from '../../store/tournamentslice';
 
 function CreateTournament() {
 

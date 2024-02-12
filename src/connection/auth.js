@@ -222,7 +222,7 @@ class Auth {
 
 
 
-    async createWebSocket(matchId){
+    async getSocket(matchId){
         try {
           return await this.database.createWebSocket(matchId);
         } catch (error) {

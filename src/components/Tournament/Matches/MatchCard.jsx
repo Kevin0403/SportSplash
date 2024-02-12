@@ -18,45 +18,47 @@ function MatchCard({match, setData}) {
         toast.success('Match Deleted Successfully')
       }
     }catch(error){
-      console.log(error)
       toast.error(error.message)
     }
     
   }
 
   return (<>
-    <Link to={`/match/${match.id}`}>
-    <div className="w-[300px] rounded-md border bg-card m-1">
-      {/* <img
-        src={`/banner.png`}
-        alt="Laptop"
-        className="h-[200px] w-full rounded-t-md object-cover"
-      /> */}
-      <div className="p-4">
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          {match.team1.name}
-        </h1>
-        <p className="m-1 text-sm ">vs</p>
-        <h1 className="inline-flex items-center text-lg font-semibold">
-          {match.team2.name}
-        </h1>
-        <p className="mt-1 text-sm ">
-          {`Start Date :- ${match.startDate}`}
-        </p>
-        <p className="mt-1 text-sm ">
-          {`Start Date :- ${match.startTime}`}
-        </p>
-        {isAdmin && (
-          <Link to={`/tournament/${tournamentId}/create-match`} state={match}>
-            <Button type="button">Update</Button>
-          </Link>
-        )}
+  <section className="m-1 w-full max-w-2xl p-6 mx-auto bg-card rounded-xl shadow-md flex flex-col gap-6">
 
-        {isAdmin && <Button type="button" onClick = {deleteMatch}>Delete</Button>}
-      </div>
-    </div>
+    {/* <div className="flex justify-between w-64">
+      <h1 className="text-2xl px-0">{match.team1.name}</h1>
+      <h1 className="text-2xl font-bold px-3">0 - 0</h1>
+      <h1 className="text-2xl px-0">{match.team2.name}</h1>
+    </div> */}
+      <table className="w-full">
+          <tr>
+            <td className="text-left">
+              <h1 className="text-xl font">{match.team1.name}</h1>
+            </td>
+            <td className="text-left">
+              <h1 className="text-2xl font-bold">{match.team1score}</h1>
+            </td>
+          </tr>
+          <tr>
+            <td className="text-left">
+              <h1 className="text-xl">{match.team2.name}</h1>
+            </td>
+            <td className="text-left">
+              <h1 className="text-2xl font-bold">{match.team2score}</h1>
+            </td>
+          </tr>
+        </table>
+
+      <div className="flex justify-center">
+        <Link
+          className=""
+          to={`/match/${match.id}`}
+        >
+          <Button>View Full Match Details</Button>
         </Link>
-
+      </div>
+    </section>
   </>  
 
   );

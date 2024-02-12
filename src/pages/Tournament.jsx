@@ -4,11 +4,6 @@ import { Outlet, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import authService from "../connection/auth";
-// import {
-//   clear,
-//   setData as setTournamentData,
-//   setIsAdmin,
-// } from "../store/tournamentslice";
 import { TournamentContext } from "../context/TournamentContextProvider";
 
 import { toast } from "react-toastify";

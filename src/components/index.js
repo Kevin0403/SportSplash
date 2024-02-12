@@ -19,10 +19,13 @@ import Matches from "./Tournament/Matches/Matches";
 import MatchCard from "./Tournament/Matches/MatchCard";
 import NameCard from "./NameCard";
 import SelectGames from "./create-tournament/SelectGames";
-import Match from "./Tournament/Matches/Match";
+import BadmintanMatch from "./matches/badmintan/Badmintan";
+import SelectCreateOption from "./create-tournament/SelectCreateOption";
+
 
 export {
-    Match,
+    SelectCreateOption,
+    BadmintanMatch,
     SelectGames,
     NameCard,
     MatchCard,

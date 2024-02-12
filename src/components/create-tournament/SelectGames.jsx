@@ -39,7 +39,7 @@ function SelectGames() {
   return (
     <div className="flex flex-wrap gap-4 p-20 w-full h-max justify-center items-center">
       {games.map((game) => (
-        <NameCard key={game.id} name={game} linkPrefix={`create-tournament`}/>
+        <NameCard key={game.id} name={game} />
       ))}
     </div>
   );

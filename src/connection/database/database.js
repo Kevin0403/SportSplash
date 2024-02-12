@@ -1,5 +1,6 @@
 import conf from "../../conf/conf";
 import axios from "axios";
+import SockJS from 'sockjs-client/dist/sockjs'; 
 
 class Database {
   constructor() {
@@ -414,7 +415,7 @@ class Database {
   // fetch bedmintan match
   async getBedmintanMatch(id){
     try {
-      const matchData = await axios.get(`${conf.databaseUrl}/match/${id}`).then((response) => response.data)
+      const matchData = await axios.get(`${conf.databaseUrl}/getBadmintonMatch/${id}`).then((response) => response.data)
         .catch((error) => {
           throw error
         });
@@ -484,7 +485,7 @@ class Database {
   //create websocket for match
   async createWebSocket(matchId){
     try {
-      return await io(`${conf.databaseUrl}/match/${matchId}`)
+      return await SockJS(`${conf.databaseUrl}/ws`);
     } catch (error) {
       throw error
     }

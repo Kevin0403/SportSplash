@@ -6,7 +6,7 @@ function NameCard({
     linkPrefix
 }) {
   return (
-    <Link to={`/${linkPrefix}/${name.to}`} >
+    <Link to={`${name.to}`} >
     <div className="bg-card p-10  rounded-lg shadow-md hover:bg-card-hover">
       <p className="font-bold text-xl">{name.value}</p>
     </div>
