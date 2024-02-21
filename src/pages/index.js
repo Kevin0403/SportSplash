@@ -6,9 +6,13 @@ import Tournament from "./Tournament";
 import Contact from "./Contact";
 import About from "./About";
 import Match from "./Match";
-import Create from './Create'
+import Create from './Create';
+import Matches from "./Matches";
+import Tournaments from "./Tournaments";
 
 export {
+    Tournaments,    
+    Matches,
     Create,
     Match,
     About,
@@ -17,5 +21,6 @@ export {
     Home,
     Signin,
     Signup,
-    CreateTournament
+    CreateTournament,
+    
 }

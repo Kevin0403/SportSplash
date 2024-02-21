@@ -25,10 +25,10 @@ function Matches() {
 
   return data ? (
     <div>
-      <ul className="flex ">
+      <ul className="flex gap-2 flex-wrap">
         {data.length > 0 ? data.map((match) => {
           return (
-            <li key={match.id}>
+            <li key={match.id} className=' w-max'>
               <MatchCard match = {match} setData = {setData} />
             </li>
           );

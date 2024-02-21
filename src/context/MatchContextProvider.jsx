@@ -58,6 +58,7 @@ function MatchContextProvider({ children }) {
         match,
         setMatch,
         isAdmin,
+        setIsAdmin,
         socket,
         updateMatch
       }}

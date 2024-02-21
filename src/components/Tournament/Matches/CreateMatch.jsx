@@ -65,7 +65,6 @@ function CreateMatch() {
       }
 
     } catch (error) {
-      SelectGames(error)
         toast.error(error.message)
     }
   };

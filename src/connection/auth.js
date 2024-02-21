@@ -167,6 +167,17 @@ class Auth {
         }
     }
 
+
+    // Get AllMatches by matchType
+    async getAllMatches(matchType){
+        try {
+            return await this.database.getAllMatches(matchType);
+        } catch (error) {
+            throw error
+        }
+    }
+
+
     // crete bedmintan match 
     async createBedmintanMatch({
         team1,
@@ -214,6 +225,15 @@ class Auth {
     async deleteBedmintanMatch(matchId){
         try {
             return await this.database.deleteBedmintanMatch(matchId)
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // createUserMatch
+    async createUserMatch(data){
+        try {
+            return await this.database.createUserMatch(data);
         } catch (error) {
             throw error
         }

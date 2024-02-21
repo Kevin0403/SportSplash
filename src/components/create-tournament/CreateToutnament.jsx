@@ -33,9 +33,7 @@ function CreateTournament() {
       try{
         const tournamentData =await authService.createTournament({...data, game}, user);
         if(tournamentData){
-          dispatch(setData(tournamentData))
-          dispatch(setIsAdmin(true))
-          toast.success("Tournament Created Successfully");
+          toast.success("Tournament Created Successfully"); 
           navigate(`/tournament/${tournamentData.id}`);
         }
       }

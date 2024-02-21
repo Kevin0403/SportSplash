@@ -5,10 +5,13 @@ import { Button } from "../../index";
 import authService from '../../../connection/auth'
 import { toast } from "react-toastify";
 import { TournamentContext } from "../../../context/TournamentContextProvider";
+import { Delete, DrumstickIcon, Recycle } from "lucide-react";
 
 function MatchCard({match, setData}) {
   const isAdmin = useContext(TournamentContext).isAdmin;
   const { tournamentId } = useParams();
+
+  
 
   const deleteMatch = async () => {
     try{
@@ -24,40 +27,45 @@ function MatchCard({match, setData}) {
   }
 
   return (<>
-  <section className="m-1 w-full max-w-2xl p-6 mx-auto bg-card rounded-xl shadow-md flex flex-col gap-6">
+  <section className="m-1 w-full max-w-2xl mx-auto bg-card rounded-xl shadow-md">
 
-    {/* <div className="flex justify-between w-64">
+    {/* -<div className="flex justify-between w-64">
       <h1 className="text-2xl px-0">{match.team1.name}</h1>
       <h1 className="text-2xl font-bold px-3">0 - 0</h1>
       <h1 className="text-2xl px-0">{match.team2.name}</h1>
     </div> */}
-      <table className="w-full">
-          <tr>
-            <td className="text-left">
-              <h1 className="text-xl font">{match.team1.name}</h1>
+    {isAdmin && (
+      <div className=" w-max float-right m-0 p-0 h-1">
+        <Button onClick={deleteMatch} className="h-6 m-0 p-0 bg-red-600 text-white">
+          <Delete size={20} />
+        </Button>
+
+      </div>
+    )}
+    <h1 className="text-lg pr-6 p-1">{match.tournament.game.toLowerCase()}</h1>
+    <Link
+          to={`/match/${match.tournament.game}/${match.id}`}
+        >
+      <table className=" mx-4 w-min">
+          <tr className="px-2">
+            <td className="text-left px-4">
+              <h1 className="text-lg font">{match.team1.name}</h1>
             </td>
-            <td className="text-left">
+            <td className="text-left px-4">
               <h1 className="text-2xl font-bold">{match.team1score}</h1>
             </td>
           </tr>
           <tr>
-            <td className="text-left">
+            <td className="text-left px-4">
               <h1 className="text-xl">{match.team2.name}</h1>
             </td>
-            <td className="text-left">
+            <td className="text-left px-4">
               <h1 className="text-2xl font-bold">{match.team2score}</h1>
             </td>
           </tr>
         </table>
-
-      <div className="flex justify-center">
-        <Link
-          className=""
-          to={`/match/${match.id}`}
-        >
-          <Button>View Full Match Details</Button>
         </Link>
-      </div>
+    
     </section>
   </>  
 

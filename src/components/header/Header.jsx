@@ -13,6 +13,14 @@ function Header() {
       to: "/",
     },
     {
+      name: "Tournaments",
+      to: "/tournaments",
+    },
+    {
+      name: "Matches",
+      to: "/matches",
+    },
+    {
       name: "About",
       to: "/about",
     },
@@ -49,7 +57,7 @@ function Header() {
               <li key={item.name}>
                 <NavLink
                   to={item.to}
-                  className=" text-lg font-semibold text-nav hover:text-nav-hover"
+                  className={({isActive}) => `text-lg font-semibold ${ isActive ?  'text-nav-active' : 'text-nav' } hover:text-nav-hover `}
                 >
                   {item.name}
                 </NavLink>

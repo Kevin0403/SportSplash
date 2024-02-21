@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 function Home() {
   const [data, setData] = useState(null);
 
+
   useEffect(() => {
     async function fetchData() {
       //TODO : fetch data from database
@@ -20,6 +21,7 @@ function Home() {
   }, []);
 
   return data ? (
+
     <div className="mt-4">
       <ul className="flex flex-wrap gap-2 justify-center">
         {data.map((tournament) => {

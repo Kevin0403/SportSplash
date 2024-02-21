@@ -1,8 +1,8 @@
 import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
-import { Home, Signin, Signup, CreateTournament, Tournament, About, Match, Create } from '../pages'
-import { CreateMatch, SelectGames, Matches, Protected, Team, Teams, SelectCreateOption} from '../components'
+import { Home, Signin, Signup, CreateTournament, Tournament, About, Match, Create, Matches as AllMatchs, Tournaments      } from '../pages'
+import { CreateMatch, SelectGames, Protected, Team, Teams, SelectCreateOption, Matches, ShowMatches, ShowTournaments, CreateUserMatch} from '../components'
 import { Contact } from 'lucide-react'
 import {TournamentContextProvider} from '../context/TournamentContextProvider'
 import { MatchContextProvider } from '../context/MatchContextProvider'
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
               {
                 path : 'match',
                 element : (
-                  <Home/>
+                  <SelectGames />
                 )
               },
               {
@@ -63,6 +63,12 @@ const router = createBrowserRouter([
                 path : 'tournament/:game',
                 element : (
                   <CreateTournament/>
+                )
+              },
+              {
+                path : 'match/:game',
+                element : (
+                  <CreateUserMatch/>
                 )
               }
             ]
@@ -104,6 +110,58 @@ const router = createBrowserRouter([
                 element : (<Protected authentication = {true}>
                   <CreateMatch />
               </Protected>)
+              }
+            ]
+          )
+        },
+        {
+          path : '/matches',
+          element : (
+            <Protected authentication = {false}>
+              <AllMatchs/>
+            </Protected>
+          ),
+          children : (
+            [
+              {
+                path : '',
+                element : <ShowMatches matchType={"ongoing"}/>
+              },
+              {
+                path : 'ongoing',
+                element : <ShowMatches matchType={"ongoing"}/>
+              },
+              {
+                path : 'upcoming',
+                element : <ShowMatches matchType={"upcoming"}/>
+              },
+              {
+                path : 'completed',
+                element : <ShowMatches matchType={"completed"}/>
+              }
+            ]
+          )
+        },
+        {
+          path : '/tournaments',
+          element : (
+            <Protected authentication = {false}>
+              <Tournaments/>
+            </Protected>
+          ),
+          children : (
+            [
+              {
+                path : '',
+                element : (
+                  <ShowTournaments/>
+                )
+              },
+              {
+                path : ':game',
+                element : (
+                  <ShowTournaments/>
+                )
               }
             ]
           )

@@ -1,11 +1,26 @@
 import React from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import {TournamentHeader} from '../index'
+import {CommonHeader} from '../index'
 
 function Tournament({
     tournamentName,
     isAdmin
 }) {
+
+    const menuItems = [
+        {
+          name: "Teams",
+          to: "teams",
+        },
+        {
+          name: "Matches",
+          to: "matches",
+        },
+        {
+          name: "Create-Match",
+          to: "create-match",
+        },
+      ];
 
     return (
         <div>
@@ -19,7 +34,7 @@ function Tournament({
                     </div> */}
                 </div>
             </div>
-            <TournamentHeader/>
+            <CommonHeader menuItems={menuItems}/>
 
         </div>
     )

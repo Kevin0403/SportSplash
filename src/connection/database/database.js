@@ -124,7 +124,7 @@ class Database {
         .post(`${this.databaseUrl}/tournaments`, {
           user,
           tournamentName,
-          game,
+          game : game.toUpperCase(),
           teams,
           teamSize,
           startDate,
@@ -364,6 +364,25 @@ class Database {
     }
   }
 
+
+  // get AllMatches by matchType
+  async getAllMatches(matchType){
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/getMatches/${matchType}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+      
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return matchData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
   // crete bedmintan match
   async createBedmintanMatch(team1, team2,startDate, startTime, tournamentId){
     try {
@@ -466,6 +485,52 @@ class Database {
       }
     } catch (error) {
       throw error;
+    }
+  }
+
+  //createUserMatch
+  async createUserMatch(data){
+    try {
+      const team1 = await axios.post(`${this.databaseUrl}/team`, {
+        tournament : data.tournament,
+        name : data.team1.name,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+
+       data.team1.players.map(async (p) => {
+        const player = await this.createPlayer(p.name, team1.id);
+      })
+
+
+      const team2 = await axios.post(`${this.databaseUrl}/team`, {
+        tournament : data.tournament,
+        name : data.team2.name,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      });
+
+       data.team2.players.map(async (p) => {
+        const player = await this.createPlayer(p.name, team2.id);
+      })
+
+      const matchData = await axios.post(`${this.databaseUrl}/create`, {
+        ...data,
+        team1,
+        team2
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+
+      return matchData
+
+    } catch (error) {
+      throw error
     }
   }
 

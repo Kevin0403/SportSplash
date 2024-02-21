@@ -18,10 +18,12 @@ function Match() {
     if (socket) {
       socket.connect({}, () => {
         socket.subscribe(`/public/scoreUpdates/${matchId}`, (message) => {
-          const match = JSON.parse(message.body);
+          const match = JSON.parse(message.body).body;
           setTeamA(match.team1Score);
           setTeamB(match.team2Score);
-          setStatus(match.status);
+          if(match.status !== status){
+            setStatus(match.status)
+          }
           if (match.status === "COMPLETED") {
             toast.success("Match Completed \n Winner is " + match.winner.name);
           }
@@ -34,13 +36,14 @@ function Match() {
     if (match) {
       setTeamA(match.team1score);
       setTeamB(match.team2score);
-      setStatus(match.status);
+      if(status !== match.status){
+        setStatus(match.status)
+      }
     }
   }, [match]);
 
   useEffect(() => {
     updateMatch();
-    console.log(match)
   }, [status]);
 
   function send(e) {
@@ -66,7 +69,7 @@ function Match() {
         `/app/startMatch/${matchId}`,
         {},
         JSON.stringify({ status: "ONGOING" })
-      );
+      )
     }
   }
 

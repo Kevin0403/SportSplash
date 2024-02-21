@@ -1,8 +1,8 @@
 import React from 'react';
-import { BadmintanMatch } from '../components';
+import { BadmintonMatch } from '../components';
 
 const MatchRoutes = {
-    Badmintan  : (<BadmintanMatch />),
+    BADMINTON  : (<BadmintonMatch />),
 }
 
 export default MatchRoutes;

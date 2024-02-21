@@ -7,7 +7,7 @@ import Select from "./Select";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import CreateTournament from "./create-tournament/CreateToutnament";
-import TournamentHeader from "./header/TournamentHeader";
+import CommonHeader from "./header/CommonHeader";
 import Tournament from "./Tournament/Tournament";
 import Team from './Tournament/Teams/Team'
 import Teams from './Tournament/Teams/Teams'
@@ -19,13 +19,20 @@ import Matches from "./Tournament/Matches/Matches";
 import MatchCard from "./Tournament/Matches/MatchCard";
 import NameCard from "./NameCard";
 import SelectGames from "./create-tournament/SelectGames";
-import BadmintanMatch from "./matches/badmintan/Badmintan";
+import BadmintonMatch from "./matches/badmintan/Badmintan";
 import SelectCreateOption from "./create-tournament/SelectCreateOption";
-
+import ShowMatches from "./matches/ShowMatches";
+import ShowTournaments from "./Tournament/ShowTournaments";
+import CreateUserMatch from "./create-match/CreateUserMatch";
+import FloatingInput from "./FloatingInput";
 
 export {
+    FloatingInput,
+    CreateUserMatch,
+    ShowTournaments,
+    ShowMatches,
     SelectCreateOption,
-    BadmintanMatch,
+    BadmintonMatch,
     SelectGames,
     NameCard,
     MatchCard,
@@ -37,7 +44,7 @@ export {
     Team,
     Teams,
     Tournament,
-    TournamentHeader,
+    CommonHeader,
     Input,
     Button,
     Signin,
