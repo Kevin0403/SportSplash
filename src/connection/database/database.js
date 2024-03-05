@@ -368,7 +368,7 @@ class Database {
   // get AllMatches by matchType
   async getAllMatches(matchType){
     try {
-      const matchData = await axios.get(`${conf.databaseUrl}/getMatches/${matchType}`).then((response) => response.data)
+      const matchData = await axios.get(`${conf.databaseUrl}/getall`).then((response) => response.data)
         .catch((error) => {
           throw error
         });
@@ -384,7 +384,7 @@ class Database {
   }
 
   // crete bedmintan match
-  async createBedmintanMatch(team1, team2,startDate, startTime, tournamentId){
+  async createBedmintanMatch({team1, team2,startDate, startTime}, tournamentId){
     try {
       const matchData = await axios.post(`${conf.databaseUrl}/create`, {
         team1 : {
@@ -413,10 +413,40 @@ class Database {
     }
   }
 
-  // get bedmintan match
-  async getMatches(id){
+  // create Kabaddi Match
+  async createKabaddiMatch({team1, team2,startDate, startTime}, tournamentId){
     try {
-      const matchData = await axios.get(`${conf.databaseUrl}/tournamentmatch/${id}`).then((response) => response.data)
+      const matchData = await axios.post(`${conf.databaseUrl}/createkabaddiMatch`, {
+        team1 : {
+          id : team1
+        },
+        team2 : {
+          id : team2
+        },
+        startTime,
+        startDate,
+        tournament : {
+          id : tournamentId
+        }
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+  
+      if(matchData.error){
+        throw new Error(matchData.error);
+      }
+      else
+        return matchData;
+    } catch (error) {
+      throw error
+    }
+  }
+
+  // get bedmintan match
+  async getMatches(id, game){
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/tournamentmatch/${game}/${id}`).then((response) => response.data)
         .catch((error) => {
           throw error
         });
@@ -435,6 +465,24 @@ class Database {
   async getBedmintanMatch(id){
     try {
       const matchData = await axios.get(`${conf.databaseUrl}/getBadmintonMatch/${id}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return matchData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // get Kabaddi Match
+  async getKabaddiMatch(id){
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/getKabaddiMatch/${id}`).then((response) => response.data)
         .catch((error) => {
           throw error
         });

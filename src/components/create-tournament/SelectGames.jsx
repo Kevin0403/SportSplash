@@ -31,7 +31,16 @@ function SelectGames() {
         {
           id : 6,
           value : "Table Tennis",
-          to : "Table Tennis"
+          to : "TableTennis"
+        },
+        {
+          id : 7,
+          value : "Kabaddi",
+          to : "Kabaddi"
+        },
+        {
+          id : 8,
+          value : "Hockey",
         }
         
       ]

@@ -10,6 +10,7 @@ function ShowTournaments() {
 const [data, setData] = useState(null);
 
   const game = useParams()?.game;
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -27,7 +28,7 @@ const [data, setData] = useState(null);
     <div>
         <ul className='flex flex-wrap justify-around '>
         {data && 
-         (game ?    data.filter((tournament) => tournament.game === game.toUpperCase())?.map(
+         (game ?  data.filter((tournament) => tournament.game === game.toUpperCase())?.map(
                 (tournament) => {
                     return (
                       <li key={tournament.id}>
@@ -38,7 +39,11 @@ const [data, setData] = useState(null);
             ) :
             data.map(
                 (tournament) => {
-                    <Card tournament/>
+                  return (
+                    <li key={tournament.id}>
+                      <Card {...tournament}/>
+                    </li>
+                  )
                 }
             ))
         }

@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { Button, Players } from "../../index";
-import { toast } from "react-toastify";
-import authService from "../../../connection/auth";
+import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Stomp from "stompjs";
-import { useSelector } from "react-redux";
 import { MatchContext } from "../../../context/MatchContextProvider";
+import {Button} from '../../index'
+import { toast } from "react-toastify";
 
-function Match() {
+
+function Kabaddi() {
   const { matchId } = useParams();
-  const { isAdmin, match, setMatch, socket, updateMatch } = React.useContext(MatchContext);
+  const { isAdmin, match, setMatch, socket, updateMatch } =
+    useContext(MatchContext);
   const [teamA, setTeamA] = useState(0);
   const [teamB, setTeamB] = useState(0);
   const [status, setStatus] = useState(false);
+
 
   useEffect(() => {
     if (socket) {
@@ -48,7 +49,7 @@ function Match() {
 
   function send(e) {
     socket.send(
-      `/app/updateBadmintonScore/${matchId}`,
+      `/app/updateScore/${matchId}/`,
       {},
       JSON.stringify({
         updateTeam: e.target.name,
@@ -66,12 +67,13 @@ function Match() {
       )
     ) {
       socket.send(
-        `/app/startBadmintonMatch/${matchId}`,
+        `/app/startKabaddiMatch/${matchId}`,
         {},
         JSON.stringify({ status: "ONGOING" })
       )
     }
   }
+
 
   return match ? (
     <div className=" p-4">
@@ -115,21 +117,19 @@ function Match() {
           <div className="bg-blue-200 p-2 mb-2 rounded-md">
             Match started at {match.startDate}
           </div>
-          {
-            match.status === "COMPLETED" && (
-              <div className="bg-blue-200 p-2 mb-2 rounded-md">
-                Match completed at {match.endDate}
-              </div>
-            )
-          }
-          {
-            match.status === "COMPLETED" && (
-              <div className="bg-blue-200 p-2 mb-2 rounded-md">
-                Winner is <span className="font-bold text-red-600">{match.winner.name}</span>
-              </div>
-            )
-          
-          }
+          {match.status === "COMPLETED" && (
+            <div className="bg-blue-200 p-2 mb-2 rounded-md">
+              Match completed at {match.endDate}
+            </div>
+          )}
+          {match.status === "COMPLETED" && (
+            <div className="bg-blue-200 p-2 mb-2 rounded-md">
+              Winner is{" "}
+              <span className="font-bold text-red-600">
+                {match.winner.name}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -138,4 +138,4 @@ function Match() {
   );
 }
 
-export default Match;
+export default Kabaddi;

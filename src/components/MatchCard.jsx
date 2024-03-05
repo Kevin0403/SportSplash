@@ -7,13 +7,13 @@ function MatchCard({
 }) {
   return (
 
-    <div className="bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2">
+    <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2">
         <Link
           to={`/match/${match.tournament.game}/${match.id}`}
         >
        
         <div className="py-3  border-b-2">
-            <h1 className="font-bold">{match.tournament.tournamentName}</h1>
+            <h1 className="font-bold">{match.tournament.game}</h1>
             {/* <p class="font-light">{match}</p> */}
         </div>
         <div className="flex justify-between">

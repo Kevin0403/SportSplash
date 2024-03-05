@@ -178,53 +178,86 @@ class Auth {
     }
 
 
-    // crete bedmintan match 
-    async createBedmintanMatch({
-        team1,
-        team2,
-        startTime,
-        startDate
-    }, tournamentId){
+    // crete match 
+    async createMatch(matchData, tournamentId, game){
         try {
-            return await this.database.createBedmintanMatch(team1, team2,startDate, startTime, tournamentId);
+            switch (game) {
+                case 'BADMINTON':
+                    return await this.database.createBedmintanMatch(matchData, tournamentId);
+                    break;
+                
+                case 'KABADDI':
+                    return await this.database.createKabaddiMatch(matchData, tournamentId);
+                    break;
+            
+                default:
+                    break;
+            }
         } catch (error) {
             throw error
         }
     }
 
     //update Bedmintan Match
-    async updateBedmintanMatch(
-        match
+    async updateMatch(
+        match, game
     ){
         try {
-            return await this.database.updateBedmintanMatch(match);
+            switch (game) {
+                case 'BADMINTON':
+                    return await this.database.updateBedmintanMatch(match);
+                    break;
+                case 'KABADDI':
+                    return await this.database.updateKabaddiMatch(match);
+                    break;
+            
+                default:
+                    break;
+            }
         } catch (error) {
             throw error
         }
     }
 
     // fetch matches from database
-    async getMatches(tournamentId){
+    async getMatches(tournamentId, game){
         try {
-            return await this.database.getMatches(tournamentId);
+            return await this.database.getMatches(tournamentId, game);
         } catch (error) {
             throw error
         }
     }
 
     // fetch bedmintan matches from database
-    async getBedmintanMatch(tournamentId){
+    async getMatch(tournamentId, game){
         try {
-            return await this.database.getBedmintanMatch(tournamentId);
+            switch (game) {
+                case 'BADMINTON':
+                    return await this.database.getBedmintanMatch(tournamentId);
+                    break;
+                case 'KABADDI':
+                    return await this.database.getKabaddiMatch(tournamentId);
+                    break;
+            }
         } catch (error) {
             throw error
         }
     }
 
     //delete bedmintan match
-    async deleteBedmintanMatch(matchId){
+    async deleteMatch(matchId, game){
         try {
-            return await this.database.deleteBedmintanMatch(matchId)
+            switch (game) {
+                case 'BADMINTON':
+                    return await this.database.deleteBedmintanMatch(matchId)                    
+                    break;
+                case 'KABADDI':
+                    return await this.database.deleteKabaddiMatch(matchId)
+                    break;
+            
+                default:
+                    break;
+            }
         } catch (error) {
             throw error
         }

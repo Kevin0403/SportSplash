@@ -30,7 +30,7 @@ function ShowMatches({
         {
             matches && matches.filter((match) => match.status === matchType.toUpperCase()).map((match, index) => {
                 return (
-                    <li key={index} className=' w-72 m-1'>
+                    <li key={index} className='  m-1'>
                         <MatchCard match={match}/>
                     </li>
                 )

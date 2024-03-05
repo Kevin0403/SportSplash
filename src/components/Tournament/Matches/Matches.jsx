@@ -1,20 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { MatchCard } from '../../index'
 import authService from '../../../connection/auth'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { TournamentContext } from '../../../context/TournamentContextProvider'
+
 
 function Matches() {
 
   const [data, setData] = useState()
   const {tournamentId} = useParams()
+  const {tournament} = useContext(TournamentContext)
 
   
 
   useEffect(()=>{
       async function fetch(id){
         try {
-          const matches = await authService.getMatches(id)
+          const matches = await authService.getMatches(id, tournament.game)
           setData(matches)
         } catch (error) {
       toast.error(error.message)

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useContext} from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Input, Select } from "../../index";
 import authService from "../../../connection/auth";
 import { ArrowRight } from "lucide-react";
+import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function CreateMatch() {
+
+  const {isAdmin, tournament} = useContext(TournamentContext);
+
 
   const location = useLocation()
   const match = location.state
@@ -43,7 +47,7 @@ function CreateMatch() {
         if(data.team1 === data.team2){
             throw new Error("Both Team doesn't have same value")
         }else{
-            const match = authService.createBedmintanMatch(data, tournamentId)
+            const match = authService.createMatch(data, tournamentId, tournament.game)
             if(match){
               toast.success("Match Created")
             }
@@ -58,7 +62,7 @@ function CreateMatch() {
         }
         match.startDate = data.startDate
         match.startTime = data.startTime
-        const d = await authService.updateBedmintanMatch(match)
+        const d = await authService.updateMatch(match, tournament.game)
         if(d){
           toast.success("Match Updated")
         }

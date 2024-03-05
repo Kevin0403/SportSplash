@@ -4,6 +4,10 @@ import { CommonHeader } from '../components';
 
 function Tournaments() {
     const menuItems = [
+      {
+        name: "All",
+        to: "",
+      },
         {
           name: "Cricket",
           to: "cricket",

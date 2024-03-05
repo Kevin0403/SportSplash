@@ -12,12 +12,12 @@ function MatchContextProvider({ children }) {
   const [match, setMatch] = React.useState(null);
   const [isAdmin, setIsAdmin] = React.useState(false);
   const [socket, setSocket] = React.useState(null);
-  const { matchId } = useParams();
+  const { matchId, game } = useParams();
   const user = useSelector((state) => state.auth.userData);
 
 
   const updateMatch = async() => {
-    const data = await authService.getBedmintanMatch(matchId)
+    const data = await authService.getMatch(matchId, game)
     if(data){
       setMatch(data)
     }
