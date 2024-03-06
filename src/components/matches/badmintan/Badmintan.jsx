@@ -17,7 +17,7 @@ function Match() {
   useEffect(() => {
     if (socket) {
       socket.connect({}, () => {
-        socket.subscribe(`/public/scoreUpdates/${matchId}`, (message) => {
+        socket.subscribe(`/public/badmintonScoreUpdates/${matchId}`, (message) => {
           const match = JSON.parse(message.body).body;
           setTeamA(match.team1Score);
           setTeamB(match.team2Score);

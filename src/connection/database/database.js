@@ -515,6 +515,23 @@ class Database {
     }
   }
 
+  //delete Kabaddi Match
+  async deleteKabaddiMatch(matchId){
+    try {
+      const matchData = await axios.delete(`${conf.databaseUrl}/kabaddimatch/${matchId}`).then((response) => response.data)
+        .catch((error) => {
+          throw error
+        });
+
+      if (matchData.error) {
+        throw new Error(matchData.error);
+      } else {
+        return true;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
   // update Bedmintan Match
   async updateBedmintanMatch(
     match
