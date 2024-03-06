@@ -30,7 +30,7 @@ function MatchContextProvider({ children }) {
 
         const socket = await authService.getSocket();
         const stompClient = await Stomp.over(socket);
-        stompClient.debug = null;  // disable debug logs
+        // stompClient.debug = null;  // disable debug logs
         setSocket(stompClient);
       } catch (error) {
         toast.error(error.message);

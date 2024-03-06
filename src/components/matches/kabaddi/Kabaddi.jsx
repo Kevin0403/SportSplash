@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { MatchContext } from "../../../context/MatchContextProvider";
 import {Button} from '../../index'
 import { toast } from "react-toastify";
+import Popup from "./Popup";
 
 
 function Kabaddi() {
@@ -13,6 +14,7 @@ function Kabaddi() {
   const [teamA, setTeamA] = useState(0);
   const [teamB, setTeamB] = useState(0);
   const [status, setStatus] = useState(false);
+  const [closePopup, setClosePopup] = useState(false);
 
 
   useEffect(() => {
@@ -20,6 +22,7 @@ function Kabaddi() {
       socket.connect({}, () => {
         socket.subscribe(`/public/scoreUpdates/${matchId}`, (message) => {
           const match = JSON.parse(message.body).body;
+          console.log(match)
           setTeamA(match.team1Score);
           setTeamB(match.team2Score);
           if(match.status !== status){
@@ -48,14 +51,15 @@ function Kabaddi() {
   }, [status]);
 
   function send(e) {
-    socket.send(
-      `/app/updateScore/${matchId}/`,
-      {},
-      JSON.stringify({
-        updateTeam: e.target.name,
-        status,
-      })
-    );
+    setClosePopup(true);
+    // socket.send(
+    //   `/app/updateScore/${matchId}/`,
+    //   {},
+    //   JSON.stringify({
+    //     updateTeam: e.target.name,
+    //     status,
+    //   })
+    // );
   }
 
   function startMatch() {
@@ -66,17 +70,22 @@ function Kabaddi() {
         }?`
       )
     ) {
+      const score = {
+        status: 'ONGOING'
+      };
+      
       socket.send(
         `/app/startKabaddiMatch/${matchId}`,
         {},
-        JSON.stringify({ status: "ONGOING" })
-      )
+        JSON.stringify(score)
+      );
     }
   }
 
 
   return match ? (
     <div className=" p-4">
+      {closePopup && <Popup onClose={closePopup} />}
       <div className="flex justify-around">
         <div className="flex flex-col items-center">
           <div className="text-2xl font-bold mb-2">{match.team1?.name}</div>
