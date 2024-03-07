@@ -1,10 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { BackgroundGradient } from "../style";
 
 function Card({ id, tournamentName, user, startDate, endDate, game }) {
   return (
-    <div className=" rounded-2xl border shadow-lg bg-card m-1 hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover border-b-card border-b-8">
+      <BackgroundGradient>
+    <div className=" rounded-2xl border shadow-lg bg-card hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover border-b-card border-b-8">
 <Link to={`/tournament/${id}`}>
       {/* <h1 className="text-center w-full rounded-t-lg text-lg font-semibold text-common bg-card-header">
           {game} 
@@ -12,7 +14,7 @@ function Card({ id, tournamentName, user, startDate, endDate, game }) {
       <img 
         src={`/banner.jpg`}
         alt="Laptop"
-        className="h-[150px] rounded-lg m-2 object-cover"
+        className="h-[150px] rounded-lgobject-cover"
       />
       <div className="px-4 pb-4">
         <h1 className="inline-flex items-center text-lg font-semibold">
@@ -31,6 +33,7 @@ function Card({ id, tournamentName, user, startDate, endDate, game }) {
       </div>
         </Link>
     </div>
+    </BackgroundGradient>
   );
 }
 

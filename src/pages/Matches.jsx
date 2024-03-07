@@ -19,7 +19,7 @@ function Matches() {
       ];
   return (
     <div>
-      <div className=' sticky top-11'>
+      <div className=' sticky top-11 z-10'>
         <CommonHeader menuItems={menuItems} className = ''/>
       </div>
     <div>

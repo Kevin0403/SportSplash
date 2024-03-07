@@ -26,12 +26,12 @@ const [data, setData] = useState(null);
   }, []);
   return (
     <div>
-        <ul className='flex flex-wrap justify-around '>
+        <ul className='flex flex-wrap justify-center space-x-8 '>
         {data && 
          (game ?  data.filter((tournament) => tournament.game === game.toUpperCase())?.map(
                 (tournament) => {
                     return (
-                      <li key={tournament.id}>
+                      <li key={tournament.id} className='m-3'>
                         <Card {...tournament}/>
                       </li>
                     )
@@ -40,7 +40,7 @@ const [data, setData] = useState(null);
             data.map(
                 (tournament) => {
                   return (
-                    <li key={tournament.id}>
+                    <li key={tournament.id} className='m-3'>
                       <Card {...tournament}/>
                     </li>
                   )

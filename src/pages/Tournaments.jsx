@@ -8,25 +8,14 @@ function Tournaments() {
         name: "All",
         to: "",
       },
-        {
-          name: "Cricket",
-          to: "cricket",
-        },
-        {
-          name: "Football",
-          to: "football",
-        },
+        
         {
           name: "Badminton",
           to: "badminton",
         },
         {
-          name: "Tennis",
-          to: "tennis",
-        },
-        {
-          name: "Basketball",
-          to: "basketball",
+          name: "Kabaddi",
+          to: "kabaddi",
         }
       ];
   return (

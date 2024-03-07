@@ -26,11 +26,11 @@ function ShowMatches({
 
   return (
    <>
-        <ul className=' flex flex-wrap justify-around '>
+        <ul className=' flex flex-wrap justify-around mt-3'>
         {
             matches && matches.filter((match) => match.status === matchType.toUpperCase()).map((match, index) => {
                 return (
-                    <li key={index} className='  m-1'>
+                    <li key={index} className='  m-2'>
                         <MatchCard match={match}/>
                     </li>
                 )

@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {BackgroundGradient} from '../style'
 
 
 function MatchCard({
     match
 }) {
   return (
+    
+    <BackgroundGradient className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2 rounded-[22px] bg-white dark:bg-zinc-900">
+    {/* <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2"> */}
 
-    <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2">
         <Link
           to={`/match/${match.tournament.game}/${match.id}`}
         >
@@ -29,7 +32,8 @@ function MatchCard({
          <p className="text-green-800">{match.status}</p>
         </div>
         </Link>
-     </div>
+     {/* </div> */}
+    </BackgroundGradient>
   )
 }
 
