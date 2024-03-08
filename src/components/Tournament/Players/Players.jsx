@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Player } from "../../index";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import authService from "../../../connection/auth";
 import { TournamentContext } from "../../../context/TournamentContextProvider";
+import Loading from "../../Loading";
 
 function Players({ id }) {
   const [data, setData] = useState();
@@ -69,9 +70,7 @@ function Players({ id }) {
       )}
     </div>
   ) : (
-    <div className='w-full text-center text-2xl start-4 '>
-      <h1 className=' text-warning'>Loading</h1>
-    </div>
+    <Loading />
   );
 }
 

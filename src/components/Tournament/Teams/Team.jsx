@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Players from "../Players/Players";
 import Button from "../../Button";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { FilePenLine, Save, X } from "lucide-react";
 import { Input } from "../../index";
 import { useSelector } from "react-redux";

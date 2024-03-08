@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import { MatchCard } from '../../index'
 import authService from '../../../connection/auth'
 import { useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import { TournamentContext } from '../../../context/TournamentContextProvider'
+import Loading from '../../Loading'
 
 
 function Matches() {
@@ -28,7 +29,7 @@ function Matches() {
 
   return data ? (
     <div>
-      <ul className="flex gap-2 flex-wrap">
+      <ul className="flex gap-2 flex-wrap mt-3 justify-center spa">
         {data.length > 0 ? data.map((match) => {
           return (
             <li key={match.id} className=' w-max'>
@@ -43,7 +44,7 @@ function Matches() {
       </ul>
     </div>
   ) : (
-    <h1 className="w-full h-full text-center">Loading</h1>
+    <Loading/>
   );
 }
 

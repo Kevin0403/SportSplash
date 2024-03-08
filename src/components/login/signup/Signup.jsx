@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Input, Select } from '../../index';
 import { Link, useNavigate } from 'react-router-dom'; 
 import { useForm } from 'react-hook-form';
-import {toast} from 'react-toastify';
+import {toast} from 'sonner';
 import authService from '../../../connection/auth';
 import { useDispatch } from 'react-redux';
 import {login as authLogin} from "../../../store/authslice"

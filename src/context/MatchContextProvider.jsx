@@ -3,7 +3,7 @@ import SockJS from "sockjs-client/dist/sockjs";
 import Stomp from "stompjs";
 import authService from "../connection/auth";
 import { useSelector } from "react-redux";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { useParams } from "react-router-dom";
 
 const MatchContext = React.createContext();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState , useContext} from "react";
 import { useForm } from "react-hook-form";
 import { useLocation, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { Button, Input, Select } from "../../index";
 import authService from "../../../connection/auth";
 import { ArrowRight } from "lucide-react";

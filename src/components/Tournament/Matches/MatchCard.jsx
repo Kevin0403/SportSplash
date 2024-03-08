@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../../index";
 import authService from '../../../connection/auth'
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { TournamentContext } from "../../../context/TournamentContextProvider";
 import { Delete, DrumstickIcon, Recycle } from "lucide-react";
 
@@ -29,18 +29,18 @@ function MatchCard({match, setData}) {
   return (
     <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2">
    
-    <div className="w-full flex justify-end border-b-2 cursor-default ">
+    {isAdmin && <div className="w-full flex justify-end border-b-2 cursor-default ">
         {/* <p class="font-light">{match}</p> */}
-        {isAdmin && (
+        
           <div className=" w-max right m-0 p-0 ">
         <Button onClick={deleteMatch} className="h-6 m-0 p-0 bg-red-600 text-white">
           <Delete size={20} />
         </Button>
 
       </div>
-    )}
+    
     {/* <h1 className="font-bold">{match.tournament.game}</h1> */}
-    </div>
+    </div>}
             <Link
               to={`/match/${match.tournament.game}/${match.id}`}
             >

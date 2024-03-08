@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import authService from "../connection/auth";
 import { TournamentContext } from "../context/TournamentContextProvider";
 
-import { toast } from "react-toastify";
+import { toast } from "sonner"
+import Loading from "../components/Loading";
 
 function Tournament() {
   const [data, setData] = useState(null);
@@ -53,7 +54,7 @@ function Tournament() {
       </div>
     </>
   ) : (
-    <div>Loading</div>
+    <Loading />
   );
 }
 

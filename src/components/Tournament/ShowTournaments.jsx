@@ -3,7 +3,8 @@ import { Card} from '../index'
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import  authService  from '../../connection/auth'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
+import Loading from '../Loading';
 
 
 function ShowTournaments() {
@@ -24,7 +25,7 @@ const [data, setData] = useState(null);
     }
     fetchData();
   }, []);
-  return (
+  return data ?  (
     <div>
         <ul className='flex flex-wrap justify-center space-x-8 '>
         {data && 
@@ -49,6 +50,8 @@ const [data, setData] = useState(null);
         }
         </ul>
     </div>
+  ) : (
+    <Loading/>
   )
 }
 

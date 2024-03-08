@@ -2,7 +2,7 @@ import React , {useEffect}from 'react';
 import { useForm } from "react-hook-form";
 import { Input, Button, Select } from '../index';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 import { useDispatch, useSelector } from 'react-redux';
 import authService from '../../connection/auth';
 

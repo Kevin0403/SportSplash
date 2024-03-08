@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Button, Players } from "../../index";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import authService from "../../../connection/auth";
 import { useParams } from "react-router-dom";
 import Stomp from "stompjs";
 import { useSelector } from "react-redux";
 import { MatchContext } from "../../../context/MatchContextProvider";
+import Loading from "../../Loading";
 
 function Match() {
   const { matchId } = useParams();
@@ -134,7 +135,7 @@ function Match() {
       </div>
     </div>
   ) : (
-    <div>Loading...</div>
+    <Loading/>
   );
 }
 

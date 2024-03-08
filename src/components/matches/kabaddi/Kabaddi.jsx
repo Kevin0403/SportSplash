@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { MatchContext } from "../../../context/MatchContextProvider";
 import {Button} from '../../index'
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import Popup from "./Popup";
 import ScoreBoard from "./ScoreBoard";
+import Loading from "../../Loading";
 
 
 function Kabaddi() {
@@ -113,6 +114,12 @@ function Kabaddi() {
 
   return match ? (
     <div className=" p-4">
+      {
+            status === "UPCOMING" &&
+            <div className=" text-lg text-red-600 p-2 mb-2 rounded-md text-center">
+              Math is not started yet
+              </div>
+          }
       {onClose && <Popup setOnClose={setOnClose} team={team} send={send} />}
       <div className="flex justify-around">
         <div className="flex flex-col items-center">
@@ -150,12 +157,20 @@ function Kabaddi() {
           </Button>
         </div>
       )}
+
+
       <div className=" inline-flex justify-center mt-4 w-full">
         <ScoreBoard {...match} />
       </div>
       <div className="mt-8 bg-gray-200 p-4">
         <div className="text-xl font-bold mb-2">Key Points</div>
         <div className="team-key-points">
+          {
+            status === "UPCOMING" &&
+            <div className="bg-blue-200 text-red-600 p-2 mb-2 rounded-md">
+              Math is not started yet
+              </div>
+          }
           {/* <div className="bg-blue-200 p-2 mb-2 rounded-md">
             Match started at {match.startDate}
           </div> */}
@@ -176,7 +191,7 @@ function Kabaddi() {
       </div>
     </div>
   ) : (
-    <div>Loading...</div>
+    <Loading />
   );
 }
 

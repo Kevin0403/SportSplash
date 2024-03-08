@@ -4,7 +4,7 @@ import FloatingInput from "../FloatingInput";
 import { useForm } from "react-hook-form";
 import Button from "../Button";
 import authService from "../../connection/auth";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { useSelector } from "react-redux";
 
 function CreateUserMatch() {

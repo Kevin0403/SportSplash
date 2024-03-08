@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import authService from "../../../connection/auth";
 import { useParams } from "react-router-dom";
 import { Button, Team } from "../../index";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { TournamentContext } from "../../../context/TournamentContextProvider";
 
 function Teams() {

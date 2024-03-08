@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Input } from "../../index";
-import { toast } from "react-toastify";
+import { toast } from "sonner"
 import { useForm } from "react-hook-form";
 import { FilePenLine, Save, X } from "lucide-react";
 import { useSelector } from "react-redux";
