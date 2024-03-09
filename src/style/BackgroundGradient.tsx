@@ -42,7 +42,7 @@ export const BackgroundGradient = ({
           backgroundSize: animate ? "400% 400%" : undefined,
         }}
         className={cn(
-          `absolute inset-0 rounded-3xl z-[0] opacity-${opacity} group-hover:opacity-100 blur-lg  transition duration-500`,
+          `absolute inset-0 rounded-3xl z-[0] opacity-${opacity} group-hover:opacity-70 blur-lg  transition duration-500`,
           " bg-[radial-gradient(circle_farthest-side_at_0_100%,#00ccb1,transparent),radial-gradient(circle_farthest-side_at_100%_0,#7b61ff,transparent),radial-gradient(circle_farthest-side_at_100%_100%,#ffc414,transparent),radial-gradient(circle_farthest-side_at_0_0,#1ca0fb,#141316)]"
         )}
       />

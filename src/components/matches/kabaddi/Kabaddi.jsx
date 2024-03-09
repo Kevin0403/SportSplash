@@ -24,16 +24,29 @@ function Kabaddi() {
     if (socket) {
       socket.connect({}, () => {
         socket.subscribe(`/public/kabaddiScoreUpdates/${matchId}`, (message) => {
-          const match = JSON.parse(message.body).body;
-          console.log(match)
-          setTeamA(match.team1score);
-          setTeamB(match.team2score);
-          if(match.status !== status){
-            setStatus(match.status)
+          const score = JSON.parse(message.body).body;
+          console.log(score)
+          setTeamA(score.team1score);
+          setTeamB(score.team2score);
+          if(score.status !== status){
+            setStatus(score.status)
           }
-          if (match.status === "COMPLETED") {
-            toast.success("Match Completed \n Winner is " + match.winner.name);
+          if (score.status === "COMPLETED") {
+            toast.success("Match Completed \n Winner is " + score.winner.name);
           }
+          score.team1score = 0;
+          score.team2score = 0;
+          setMatch((match) => {
+            for(const key in score) {
+              // Check if the property exists in the match object
+              if (score.hasOwnProperty(key) && Number.isInteger(score[key])) {
+                  // Assign the value of the score property to the corresponding property in the match object
+                  match[key] += score[key];
+              }
+
+          }
+          return match;
+        })
         });
       });
     }
@@ -171,14 +184,14 @@ function Kabaddi() {
               Math is not started yet
               </div>
           }
-          {/* <div className="bg-blue-200 p-2 mb-2 rounded-md">
-            Match started at {match.startDate}
-          </div> */}
-          {/* {match.status === "COMPLETED" && (
+          <div className="bg-blue-200 p-2 mb-2 rounded-md">
+            Match {status == "UPCOMING" ? 'will' : ""} start{status == "UPCOMING" ? "" : "ed"} at {match.startTime}
+          </div>
+          {match.status === "COMPLETED" && (
             <div className="bg-blue-200 p-2 mb-2 rounded-md">
               Match completed at {match.endTime}
             </div>
-          )} */}
+          )}
           {match.status === "COMPLETED" && (
             <div className="bg-blue-200 p-2 mb-2 rounded-md">
               Winner is{" "}
