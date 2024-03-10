@@ -50,7 +50,7 @@ export {
     Input,
     Button,
     Signin,
-    Signup,
+    Signup,   
     Protected,
     Select,
     Header,

@@ -124,6 +124,16 @@ function Kabaddi() {
     }
   }
 
+  function undoMatch() {
+    if (confirm(`Are you sure you want to undo the match?`)) {
+      socket.send(
+        `/app/updateKabaddiScore/${matchId}`,
+        {},
+        JSON.stringify({ undo : true })
+      )
+    }
+  }
+
 
   return match ? (
     <div className=" p-4">
@@ -148,7 +158,8 @@ function Kabaddi() {
         {/* Shows the players here */}
       </div>
       {isAdmin && (
-        <div className="flex justify-around mt-8">
+        <div>
+          <div className="flex justify-around mt-8">
           <Button
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
             name="1"
@@ -168,6 +179,15 @@ function Kabaddi() {
           >
             Add point to {match.team2?.name}
           </Button>
+        </div>
+        <div className="flex justify-around mt-8">
+          <Button
+            disabled={status !=  "ONGOING"}
+            onClick={undoMatch}
+          >
+            Undo
+          </Button>
+          </div>
         </div>
       )}
 

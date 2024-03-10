@@ -74,6 +74,16 @@ function Match() {
     }
   }
 
+  function undoMatch() {
+    if (confirm(`Are you sure you want to undo the match?`)) {
+      socket.send(
+        `/app/updateBadmintonScore/${matchId}`,
+        {},
+        JSON.stringify({ undo : true })
+      )
+    }
+  }
+
   return match ? (
     <div className=" p-4">
       <div className="flex justify-around">
@@ -91,23 +101,26 @@ function Match() {
       </div>
       {isAdmin && (
         <div className="flex justify-around mt-8">
-          <button
+          <Button
             className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
             name="1"
             onClick={send}
+            disabled={status !=  "ONGOING"}
           >
             Add point to {match.team1.name}
-          </button>
-          <Button onClick={startMatch} disabled={status === "ONGOING"}>
-            {status === "UPCOMING" ? "Start Match" : "Restart"}
           </Button>
-          <button
+          <Button onClick={status === "ONGOING" ? undoMatch : startMatch} >
+            {status === "UPCOMING" ? "Start Match" : status === "ONGOING" ? "Undo" : "Restart"}
+          </Button>
+          {/* <Button onClick= {undoMatch} disabled={status === "UPCOMING"} > Undo </Button> */}
+          <Button
             className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4 "
             name="2"
             onClick={send}
+            disabled={status !=  "ONGOING"}
           >
             Add point to {match.team2.name}
-          </button>
+          </Button>
         </div>
       )}
       <div className="mt-8 bg-gray-200 p-4">
