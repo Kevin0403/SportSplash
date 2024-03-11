@@ -8,7 +8,7 @@ function MatchCard({
 }) {
   return (
     
-    <BackgroundGradient className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2 rounded-[22px] bg-white dark:bg-zinc-900">
+    <BackgroundGradient className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2 rounded-[22px] bg-white ">
     {/* <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2"> */}
 
         <Link

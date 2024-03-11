@@ -26,8 +26,12 @@ import ShowTournaments from "./Tournament/ShowTournaments";
 import CreateUserMatch from "./create-match/CreateUserMatch";
 import FloatingInput from "./FloatingInput";
 import Kabaddi from "./matches/kabaddi/Kabaddi";
+import ContactDetails from "./contact/ContactDetails";
+import ContactForm from "./contact/ContactForm";
 
 export {
+    ContactForm,
+    ContactDetails,
     Kabaddi,
     FloatingInput,
     CreateUserMatch,

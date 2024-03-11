@@ -34,19 +34,7 @@ function Kabaddi() {
           if (score.status === "COMPLETED") {
             toast.success("Match Completed \n Winner is " + score.winner.name);
           }
-          score.team1score = 0;
-          score.team2score = 0;
-          setMatch((match) => {
-            for(const key in score) {
-              // Check if the property exists in the match object
-              if (score.hasOwnProperty(key) && Number.isInteger(score[key])) {
-                  // Assign the value of the score property to the corresponding property in the match object
-                  match[key] += score[key];
-              }
-
-          }
-          return match;
-        })
+          setMatch((prev) => ({ ...prev, ...score }));
         });
       });
     }

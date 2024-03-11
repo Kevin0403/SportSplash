@@ -20,6 +20,7 @@ function MatchContextProvider({ children }) {
     const data = await authService.getMatch(matchId, game)
     if(data){
       setMatch(data)
+      console.log(data)
     }
   }
 

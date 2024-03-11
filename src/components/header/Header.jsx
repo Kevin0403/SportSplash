@@ -112,6 +112,7 @@ function Header() {
                   <nav className="grid gap-y-4">
                     {menuItems.map((item) => (
                       <NavLink
+                      onClick={toggleMenu}
                         key={item.name}
                         to={item.to}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
@@ -123,7 +124,7 @@ function Header() {
                     ))}
                   </nav>
                 </div>
-                <Link to="/create-tournament">
+                <Link to="/create">
                   <Button onClick={toggleMenu}>Create</Button>
                 </Link>
                 {authStatus && (

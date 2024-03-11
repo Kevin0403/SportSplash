@@ -1,9 +1,8 @@
 import React from 'react'
 import { createBrowserRouter} from 'react-router-dom'
 import App from '../App'
-import { Home, Signin, Signup, CreateTournament, Tournament, About, Match, Create, Matches as AllMatchs, Tournaments      } from '../pages'
+import { Home, Signin, Signup, CreateTournament, Tournament, About, Match, Create, Matches as AllMatchs, Tournaments , Contact     } from '../pages'
 import { CreateMatch, SelectGames, Protected, Team, Teams, SelectCreateOption, Matches, ShowMatches, ShowTournaments, CreateUserMatch} from '../components'
-import { Contact } from 'lucide-react'
 import {TournamentContextProvider} from '../context/TournamentContextProvider'
 import { MatchContextProvider } from '../context/MatchContextProvider'
 

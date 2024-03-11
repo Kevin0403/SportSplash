@@ -15,6 +15,7 @@ function ScoreBoard({
     bonusPoints2,
     alloutPoints2
 }) {
+  console.log(tacklePoints1)
   return (
     <BackgroundGradient opacity={20}>
     <div className="w-max scoreboard bg-gray-100 p-4 rounded-md shadow-lg">
