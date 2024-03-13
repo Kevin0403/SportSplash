@@ -19,6 +19,8 @@ export default {
          'card-header' : '#6190E6',
          'card-header-hover' : '#FFB74D ',
           'card-hover' : '#b8cdf4',
+          'input' : '#ecf2fc',
+          'input-focus' : 'white',
       },
       textColor: {
         'warning' : 'red',

@@ -3,6 +3,8 @@ import { Card } from "../components";
 import authService from "../connection/auth";
 import { toast } from "sonner"
 import Loading from "../components/Loading";
+import {ImageSlider} from "../components";
+import { HomeSliderImages } from "../components";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -24,6 +26,11 @@ function Home() {
   return data ? (
 
     <div className="mt-4">
+      <div className="flex justify-center">
+      <div className='container'>
+        <ImageSlider images={HomeSliderImages} />
+      </div>
+      </div>
       <ul className="flex flex-wrap gap-2 justify-center">
         {data.map((tournament) => {
           return (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
-import  CountryCode  from "./CountryCode.json"
 import Input from "../Input"
 import Button from "../Button"
 
@@ -115,7 +114,7 @@ const ContactUsForm = () => {
           cols="30"
           rows="7"
           placeholder="Enter your message here"
-          className="form-style bg-transparent"
+          className="form-style rounded-md border border-gray-300 bg-input px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:bg-input-focus focus:ring-gray-700 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
           {...register("message", { required: true })}
         />
         {errors.message && (

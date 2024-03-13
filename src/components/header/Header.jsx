@@ -5,6 +5,7 @@ import Input from "../Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authslice";
+import Logo from "../Logo";
 
 function Header() {
   const menuItems = [
@@ -47,9 +48,12 @@ function Header() {
     <div className="bg-navbar z-50 fixed w-full">
       <div className="mx-auto flex items-center justify-between px-4  sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
-          <span>
+          {/* <span>
             <img className=" h-10 p-1" src="/SportSplash.png" alt="logo" />
-          </span>
+          </span> */}
+          <Link to="/">
+          <Logo />
+          </Link>
         </div>
         <div className="hidden grow items-start lg:flex">
           <ul className="ml-12 inline-flex space-x-8">
@@ -89,13 +93,14 @@ function Header() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                    <span>
+                    {/* <span>
                       <img
                         className=" h-10 p-1"
                         src="/SportSplash.png"
                         alt="logo"
                       />
-                    </span>
+                    </span> */}
+                    <Logo />
                   </div>
                   <div className="-mr-2">
                     <button

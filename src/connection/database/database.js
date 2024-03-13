@@ -126,17 +126,17 @@ class Database {
           tournamentName,
           game : game.toUpperCase(),
           teams,
-          teamSize,
+          teamSize, 
           startDate,
           endDate
         })
         .then((response) => response.data)
         .catch((error) => {
-          throw new Error(error.message);
+          return {error : (error.request.response || error.message)} ;
         });
 
       if ((tournamentData && tournamentData.error) || !tournamentData.user) {
-        throw new Error(tournamentData.error && "Not able to send request");
+        throw new Error(tournamentData.error || "Not able to send request");
       } else {
         return tournamentData;
       }

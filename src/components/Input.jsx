@@ -16,7 +16,7 @@ function Input(
       <div >
         <input
           type={type}
-          className={` h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-700 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
+          className={` h-10 w-full rounded-md border border-gray-300 bg-input focus:bg-input-focus px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-700 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 ${className}`}
           ref={ref}
           {...props}
           id={id}

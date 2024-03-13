@@ -28,8 +28,15 @@ import FloatingInput from "./FloatingInput";
 import Kabaddi from "./matches/kabaddi/Kabaddi";
 import ContactDetails from "./contact/ContactDetails";
 import ContactForm from "./contact/ContactForm";
+import Logo from "./Logo";
+import ImageSlider from "./slider/ImageSlider";
+import { IMAGES as HomeSliderImages } from "./data/SliderImages";
 
 export {
+    HomeSliderImages,
+
+    ImageSlider,
+    Logo,
     ContactForm,
     ContactDetails,
     Kabaddi,
