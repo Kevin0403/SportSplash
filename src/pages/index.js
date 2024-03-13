@@ -10,8 +10,10 @@ import Create from './Create';
 import Matches from "./Matches";
 import Tournaments from "./Tournaments";
 import Loading from "../components/Loading";
+import Profile from "./Profile";
 
 export {
+    Profile,
     Loading,
     Tournaments,    
     Matches,

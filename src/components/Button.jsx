@@ -11,7 +11,7 @@ function Button({
 }) {
     return (
         <div className={`${divClass} m-1 `}>
-            <button className={`inline-flex w-full bg-button items-center justify-center rounded-md px-3.5 py-1.5 font-semibold leading-7 text-button  hover:bg-button-hover disabled:bg-slate-50 ${bgColor} ${textColor} ${className}`} {...props}>
+            <button className={`btn btn-outline ${bgColor} ${textColor} ${className}`} {...props}>
             {children}
             </button>
         </div>

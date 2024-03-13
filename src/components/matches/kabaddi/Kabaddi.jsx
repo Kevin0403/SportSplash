@@ -125,12 +125,17 @@ function Kabaddi() {
 
   return match ? (
     <div className=" p-4">
+      {/* Dispaly tournament name and details */}
+      <div className="text-2xl mb-2">
+        <h1 className="text-center ">Tournament : <span className="text-gray-500">{match.tournament.tournamentName}</span></h1>
+      </div>
       {
             status === "UPCOMING" &&
             <div className=" text-lg text-red-600 p-2 mb-2 rounded-md text-center">
               Math is not started yet
               </div>
           }
+          
       {onClose && <Popup setOnClose={setOnClose} team={team} send={send} />}
       <div className="flex justify-around">
         <div className="flex flex-col items-center">

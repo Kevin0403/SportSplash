@@ -19,7 +19,7 @@ function Tournaments() {
         }
       ];
   return (
-    <div className='w-full'>
+    <div className='flex flex-col'>
         <CommonHeader menuItems={menuItems}/>
       <div className=' '>
           <Outlet/>

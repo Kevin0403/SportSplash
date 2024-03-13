@@ -24,6 +24,9 @@ function Card({ id, tournamentName, user, startDate, endDate, game }) {
         <p className="mt-1 text-sm text-gray-600">
           {`Start Date :- ${new Date(startDate).toDateString()}`}
         </p>
+        <p className="mt-1 text-sm text-gray-600">
+          {`Created By ${user.fname} ${user.lname}`}
+        </p>
           {/* <button
             type="button"
             className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"

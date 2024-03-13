@@ -8,7 +8,7 @@ function MatchCard({
 }) {
   return (
     
-    <BackgroundGradient className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2 rounded-[22px] bg-white ">
+    <BackgroundGradient className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer px-3 space-y-2 rounded-[22px] bg-white ">
     {/* <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2"> */}
 
         <Link
@@ -16,8 +16,11 @@ function MatchCard({
         >
        
         <div className="py-3  border-b-2">
-            <h1 className="font-bold">{match.tournament.game}</h1>
-            {/* <p class="font-light">{match}</p> */}
+            <h1 className="font-bold text-center">{match.tournament.game} 
+            </h1>
+
+
+            <p class="font-light text-center">{match.tournament.tournamentName ? `(${match.tournament.tournamentName})` : `(Hosted by ${match.tournament.user?.fname})`}</p>
         </div>
         <div className="flex justify-between">
          <h1 className="font-bold text-gray-600">{match.team1.name}</h1>

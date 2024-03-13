@@ -6,7 +6,7 @@ export default function CommonHeader({menuItems, className = ""}) {
   
 
   return (
-    <div className={`relative border backdrop-blur-sm ${className}`}>
+    <div className={` border backdrop-blur-sm ${className}`}>
       <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-2 sm:px-6 px-8 ">
         <div className="block">
           <ul className="inline-flex space-x-8">

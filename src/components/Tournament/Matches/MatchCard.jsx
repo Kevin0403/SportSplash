@@ -27,14 +27,14 @@ function MatchCard({match, setData}) {
   }
 
   return (
-    <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer p-3 space-y-2">
+    <div className="w-72 bg-white transition-all hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover card h-full shadow border rounded-xl border-b-8 border-b-card cursor-pointer px-3 pb-3 space-y-2">
    
     {isAdmin && <div className="w-full flex justify-end border-b-2 cursor-default ">
         {/* <p class="font-light">{match}</p> */}
         
-          <div className=" w-max right m-0 p-0 ">
-        <Button onClick={deleteMatch} className="h-6 m-0 p-0 bg-red-600 text-white">
-          <Delete size={20} />
+          <div className=" w-max right ">
+        <Button onClick={deleteMatch} className="btn-sm border-none hover:bg-transparent text-red-500 ">
+          <Delete size={25} />
         </Button>
 
       </div>

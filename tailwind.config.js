@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("daisyui")],
   theme: {
     extend: {
       backgroundColor: {
@@ -21,6 +21,7 @@ export default {
           'card-hover' : '#b8cdf4',
           'input' : '#ecf2fc',
           'input-focus' : 'white',
+          'footer' : '#6190E6',
       },
       textColor: {
         'warning' : 'red',
@@ -40,6 +41,12 @@ export default {
         'button-hover' : '#7FC7D9',
         'card-hover' : '#FFB74D',
         'card' : '#6190E6', 
+      },
+
+      fontFamily: {
+        'common' : ['Roboto Condensed', 'sans-serif'],
+        'sans': ['Nunito', 'sans-serif'],
+        'serif': ['Merriweather', 'serif'],
       },
 
     }
