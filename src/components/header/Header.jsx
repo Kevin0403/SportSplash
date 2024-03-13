@@ -45,7 +45,7 @@ function Header() {
   }
 
   return (
-    <div className="bg-navbar z-100 w-full">
+    <div className=" sticky top-0 bg-navbar z-[101] w-full">
       <div className="mx-auto flex items-center justify-between px-4  sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           {/* <span>

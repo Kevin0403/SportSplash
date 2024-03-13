@@ -4,7 +4,7 @@ import authService from "../connection/auth";
 import { toast } from "sonner"
 import Loading from "../components/Loading";
 import {ImageSlider} from "../components";
-import { HomeSliderImages } from "../components";
+import { HomeSliderImages, TournamentOverview } from "../components";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -31,7 +31,13 @@ function Home() {
         <ImageSlider images={HomeSliderImages} />
       </div>
       </div>
-      <ul className="flex flex-wrap gap-2 justify-center">
+      <div>
+        <h1 className="text-3xl font-bold text-center mt-4">Tournaments</h1>
+        <div>
+          <TournamentOverview />
+        </div>
+      </div>
+      {/* <ul className="flex flex-wrap gap-2 justify-center">
         {data.map((tournament) => {
           return (
             <li key={tournament.id} className="m-3">
@@ -39,7 +45,7 @@ function Home() {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
     </div>
   ) : (
     <Loading />

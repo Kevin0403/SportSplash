@@ -14,6 +14,7 @@ function MatchCard({match, setData}) {
   
 
   const deleteMatch = async () => {
+    if(!window.confirm('Are you sure you want to delete this match?'))  return
     try{
       const data = await authService.deleteMatch(match.id, tournament.game)
       if(data){

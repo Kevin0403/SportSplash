@@ -31,8 +31,10 @@ import ContactForm from "./contact/ContactForm";
 import Logo from "./Logo";
 import ImageSlider from "./slider/ImageSlider";
 import { IMAGES as HomeSliderImages } from "./data/SliderImages";
+import TournamentOverview from "./Tournament/TournamentOverview";
 
 export {
+    TournamentOverview,
     HomeSliderImages,
 
     ImageSlider,
