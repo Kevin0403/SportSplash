@@ -9,7 +9,7 @@ function Footer() {
         <Link to="/about" className="link link-hover">About</Link>
         <Link to="/contact" className="link link-hover">Contact</Link>
         <Link to="/tournaments" className="link link-hover">Tournaments</Link>
-        <Link to="/matches" className="link link-hover">matces</Link>
+        <Link to="/matches" className="link link-hover">Matches</Link>
       </nav>
       <nav>
         <div className="grid grid-flow-col gap-4">

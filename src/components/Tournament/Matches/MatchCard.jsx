@@ -33,7 +33,7 @@ function MatchCard({match, setData}) {
         {/* <p class="font-light">{match}</p> */}
         
           <div className=" w-max right ">
-        <Button onClick={deleteMatch} className="btn-sm border-none hover:bg-transparent text-red-500 ">
+        <Button onClick={deleteMatch} className="btn-sm border-none bg-transparent hover:bg-transparent text-red-500 ">
           <Delete size={25} />
         </Button>
 

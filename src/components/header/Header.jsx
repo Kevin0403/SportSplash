@@ -45,7 +45,7 @@ function Header() {
   }
 
   return (
-    <div className="bg-navbar z-50 w-full">
+    <div className="bg-navbar z-100 w-full">
       <div className="mx-auto flex items-center justify-between px-4  sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           {/* <span>
@@ -129,11 +129,11 @@ function Header() {
                     ))}
                   </nav>
                 </div>
-                <Link to="/create">
-                  <Button onClick={toggleMenu}>Create</Button>
+                <Link to="/create" className=" text-center">
+                  <Button className="btn-wide" onClick={toggleMenu}>Create</Button>
                 </Link>
                 {authStatus && (
-                  <Button onClick={remove}>Logout</Button>
+                  <span className="text-center"><Button className="btn-wide" onClick={remove}>Logout</Button></span>
                 )}
               </div>
             </div>

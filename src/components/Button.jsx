@@ -11,7 +11,7 @@ function Button({
 }) {
     return (
         <div className={`${divClass} m-1 `}>
-            <button className={`btn btn-outline ${bgColor} ${textColor} ${className}`} {...props}>
+            <button className={`btn btn-neutral ${bgColor} ${textColor} ${className}`} {...props}>
             {children}
             </button>
         </div>
