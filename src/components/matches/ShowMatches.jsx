@@ -14,28 +14,31 @@ function ShowMatches({
     const fetchMatches = async (type) => {
         try {
             const matches = await authService.getAllMatches(matchType)
-            setMatches(matches)
+            setMatches( matches.filter((match) =>matchType ?  match.status === matchType.toUpperCase() : true))
         } catch (error) {
             toast.error(error.message)
         }
     }
 
     useEffect(() => {
+        setMatches(null)
         fetchMatches(matchType)
-    }, [])
+    }, [matchType])
 
 
   return matches ? (
    <>
         <ul className=' flex flex-wrap justify-around mt-3'>
         {
-            matches && matches.filter((match) => match.status === matchType.toUpperCase()).map((match, index) => {
+            matches && matches.length > 0 ? matches.map((match, index) => {
                 return (
                     <li key={index} className='  m-2'>
                         <MatchCard match={match}/>
                     </li>
                 )
-            })
+            })  : (
+                <h1 className='text-lg font-bold text-center text-red-500'>No Matches Found</h1>
+            )
         }
         </ul>
    </>

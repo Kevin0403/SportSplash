@@ -31,9 +31,10 @@ function Tournament({
     const deleteTournament = async () => {
         try{
         if(window.confirm('Are you sure you want to delete this tournament?'))
-            await authService.deleteTournament(tournament.id);
+         {   await authService.deleteTournament(tournament.id);
             toast.success('Tournament deleted successfully');
             navigate('/');
+         }
         }
         catch(err){
             toast.error(err.message);

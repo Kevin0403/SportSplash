@@ -148,7 +148,7 @@ class Database {
   //delete tournament
   async deleteTournament(id) {
     try {
-      await axios.delete(`${this.databaseUrl}/tournaments/${id}`)
+      await axios.delete(`${this.databaseUrl}/tournament/${id}`)
         .catch((error) => {
           throw new Error(error.message);
         });
