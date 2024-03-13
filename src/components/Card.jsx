@@ -3,14 +3,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BackgroundGradient } from "../style";
 
-function Card({ id, tournamentName, user, startDate, endDate, game }) {
+function Card({ id, tournamentName, user, startDate, endDate, game, showName = false }) {
   return (
       <BackgroundGradient>
-    <div className=" rounded-2xl border shadow-lg bg-card hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover border-b-card border-b-8">
+    <div className=" rounded-b-2xl border shadow-lg bg-card hover:bg-card-hover hover:text-card-hover hover:border-b-card-hover border-b-card border-b-8">
 <Link to={`/tournament/${id}`}>
-      {/* <h1 className="text-center w-full rounded-t-lg text-lg font-semibold text-common bg-card-header">
+      {showName && <h1 className="text-center w-full text-lg font-semibold text-common bg-card-header">
           {game} 
-      </h1> */}
+      </h1>}
       <img 
         src={`/banner.jpg`}
         alt="Laptop"

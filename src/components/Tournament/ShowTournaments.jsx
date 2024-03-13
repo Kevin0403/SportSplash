@@ -42,7 +42,7 @@ const [data, setData] = useState(null);
                 (tournament) => {
                   return (
                     <li key={tournament.id} className='m-3'>
-                      <Card {...tournament}/>
+                      <Card {...tournament} showName/>
                     </li>
                   )
                 }

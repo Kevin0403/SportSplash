@@ -72,6 +72,15 @@ class Auth {
         }
     }
 
+    // delete tournament
+    async deleteTournament(id) {
+        try {
+            return await this.database.deleteTournament(id);
+        } catch (error) {
+            throw error;
+        }
+    }
+
     // Get Tournament from tournament id
     async getTournament(tournamentId) {
         try {

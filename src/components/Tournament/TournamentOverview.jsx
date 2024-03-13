@@ -30,7 +30,7 @@ function TournamentOverview() {
             data.filter((tournament, index) => index < 5).map((tournament) => {
                 return (
                     <li key={tournament.id} className="m-3">
-                      <Card {...tournament} />
+                      <Card {...tournament} showName/>
                     </li>
                   );
             })

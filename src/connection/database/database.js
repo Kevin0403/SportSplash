@@ -1,6 +1,6 @@
 import conf from "../../conf/conf";
 import axios from "axios";
-import SockJS from 'sockjs-client/dist/sockjs'; 
+import SockJS from 'sockjs-client/dist/sockjs';
 
 class Database {
   constructor() {
@@ -117,22 +117,22 @@ class Database {
   }
 
   // create tournament : that create and insert into tournament table
-  async createTournament(tournamentName, game,  teamSize, startDate, endDate, user, teams) {
+  async createTournament(tournamentName, game, teamSize, startDate, endDate, user, teams) {
     try {
 
       const tournamentData = await axios
         .post(`${this.databaseUrl}/tournaments`, {
           user,
           tournamentName,
-          game : game.toUpperCase(),
+          game: game.toUpperCase(),
           teams,
-          teamSize, 
+          teamSize,
           startDate,
           endDate
         })
         .then((response) => response.data)
         .catch((error) => {
-          return {error : (error.request.response || error.message)} ;
+          return { error: (error.request.response || error.message) };
         });
 
       if ((tournamentData && tournamentData.error) || !tournamentData.user) {
@@ -145,6 +145,21 @@ class Database {
     }
   }
 
+  //delete tournament
+  async deleteTournament(id) {
+    try {
+      await axios.delete(`${this.databaseUrl}/tournaments/${id}`)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
+    }
+    catch (error) {
+      throw error;
+    }
+
+    return true;
+  }
+
   // get tournament from tournament id
   async getTournament(tournamentId) {
     try {
@@ -155,14 +170,14 @@ class Database {
           throw new Error(error.message);
         });
 
-        if ((tournamentData && tournamentData.error) || !tournamentData.user) {
-          throw new Error(tournamentData.error && "Not able to send request");
-        } else {
-          return tournamentData;
-        }
-      } catch (error) {
-        throw error;
+      if ((tournamentData && tournamentData.error) || !tournamentData.user) {
+        throw new Error(tournamentData.error && "Not able to send request");
+      } else {
+        return tournamentData;
       }
+    } catch (error) {
+      throw error;
+    }
   }
 
   // get all tournaments
@@ -208,17 +223,17 @@ class Database {
   }
 
   // createTeam tha tadd entry in team table
-  async createTeam(name, id){
+  async createTeam(name, id) {
     try {
       const teamData = await axios.post(`${conf.databaseUrl}/team`, {
         name,
-        tournament : {id}
+        tournament: { id }
       }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-  
-      if(teamData.error){
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+
+      if (teamData.error) {
         throw new Error(teamData.error);
       }
       else
@@ -229,17 +244,17 @@ class Database {
   }
 
   // create team that adds data in team table
-  async createTeam(name, id){
+  async createTeam(name, id) {
     try {
       const teamData = await axios.post(`${conf.databaseUrl}/team`, {
         name,
-        tournament : {id}
+        tournament: { id }
       }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-  
-      if(teamData.error){
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+
+      if (teamData.error) {
         throw new Error(teamData.error);
       }
       else
@@ -250,12 +265,12 @@ class Database {
   }
 
   // update team
-  async updateTeam(team){
+  async updateTeam(team) {
     try {
       const teamData = await axios.put(`${conf.databaseUrl}/team`, team).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      }) 
+        .catch((error) => {
+          throw new Error(error.message);
+        })
       if (teamData.error) {
         throw new Error(teamData.error);
       } else {
@@ -267,7 +282,7 @@ class Database {
   }
 
   // get players from team id
-  async getPlayers(teamId){
+  async getPlayers(teamId) {
     try {
       const playerData = await axios.get(`${conf.databaseUrl}/team/${teamId}`, {
         teamId,
@@ -287,19 +302,19 @@ class Database {
   }
 
   // add player to team
-  async createPlayer(name, id){
+  async createPlayer(name, id) {
     try {
       const teamData = await axios.post(`${conf.databaseUrl}/player`, {
         name,
-        team : {
+        team: {
           id
         }
       }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-  
-      if(teamData.error){
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+
+      if (teamData.error) {
         throw new Error(teamData.error);
       }
       else
@@ -310,26 +325,26 @@ class Database {
   }
 
   // update Player
-  async updatePlayer(player){
+  async updatePlayer(player) {
     try {
       const playerData = await axios.put(`${conf.databaseUrl}/player`, player).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
+        .catch((error) => {
+          throw new Error(error.message);
+        })
 
-      if(playerData.error){
+      if (playerData.error) {
         throw new Error(playerData.error);
       }
       else
         return playerData;
     }
-    catch(error){
+    catch (error) {
       throw error
     }
   }
 
   // delete player
-  async deletePlayer(id){
+  async deletePlayer(id) {
     try {
       const playerData = await axios.delete(`${conf.databaseUrl}/player/${id}`).then((response) => response.data)
         .catch((error) => {
@@ -347,7 +362,7 @@ class Database {
   }
 
   // delete team
-  async deleteTeam(id){
+  async deleteTeam(id) {
     try {
       const teamData = await axios.delete(`${conf.databaseUrl}/team/${id}`).then((response) => response.data)
         .catch((error) => {
@@ -366,13 +381,13 @@ class Database {
 
 
   // get AllMatches by matchType
-  async getAllMatches(matchType){
+  async getAllMatches(matchType) {
     try {
       const matchData = await axios.get(`${conf.databaseUrl}/getall`).then((response) => response.data)
         .catch((error) => {
           throw error
         });
-      
+
       if (matchData.error) {
         throw new Error(matchData.error);
       } else {
@@ -384,26 +399,26 @@ class Database {
   }
 
   // crete bedmintan match
-  async createBedmintanMatch({team1, team2,startDate, startTime}, tournamentId){
+  async createBedmintanMatch({ team1, team2, startDate, startTime }, tournamentId) {
     try {
       const matchData = await axios.post(`${conf.databaseUrl}/create`, {
-        team1 : {
-          id : team1
+        team1: {
+          id: team1
         },
-        team2 : {
-          id : team2
+        team2: {
+          id: team2
         },
         startTime,
         startDate,
-        tournament : {
-          id : tournamentId
+        tournament: {
+          id: tournamentId
         }
       }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-  
-      if(matchData.error){
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+
+      if (matchData.error) {
         throw new Error(matchData.error);
       }
       else
@@ -414,26 +429,26 @@ class Database {
   }
 
   // create Kabaddi Match
-  async createKabaddiMatch({team1, team2,startDate, startTime}, tournamentId){
+  async createKabaddiMatch({ team1, team2, startDate, startTime }, tournamentId) {
     try {
       const matchData = await axios.post(`${conf.databaseUrl}/createkabaddiMatch`, {
-        team1 : {
-          id : team1
+        team1: {
+          id: team1
         },
-        team2 : {
-          id : team2
+        team2: {
+          id: team2
         },
         startTime,
         startDate,
-        tournament : {
-          id : tournamentId
+        tournament: {
+          id: tournamentId
         }
       }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-  
-      if(matchData.error){
+        .catch((error) => {
+          throw new Error(error.message);
+        })
+
+      if (matchData.error) {
         throw new Error(matchData.error);
       }
       else
@@ -444,7 +459,7 @@ class Database {
   }
 
   // get bedmintan match
-  async getMatches(id, game){
+  async getMatches(id, game) {
     try {
       const matchData = await axios.get(`${conf.databaseUrl}/tournamentmatch/${game}/${id}`).then((response) => response.data)
         .catch((error) => {
@@ -462,7 +477,7 @@ class Database {
   }
 
   // fetch bedmintan match
-  async getBedmintanMatch(id){
+  async getBedmintanMatch(id) {
     try {
       const matchData = await axios.get(`${conf.databaseUrl}/getBadmintonMatch/${id}`).then((response) => response.data)
         .catch((error) => {
@@ -480,7 +495,7 @@ class Database {
   }
 
   // get Kabaddi Match
-  async getKabaddiMatch(id){
+  async getKabaddiMatch(id) {
     try {
       const matchData = await axios.get(`${conf.databaseUrl}/getKabaddiMatch/${id}`).then((response) => response.data)
         .catch((error) => {
@@ -498,7 +513,7 @@ class Database {
   }
 
   // delete bedmintan match
-  async deleteBedmintanMatch(matchId){
+  async deleteBedmintanMatch(matchId) {
     try {
       const matchData = await axios.delete(`${conf.databaseUrl}/match/${matchId}`).then((response) => response.data)
         .catch((error) => {
@@ -516,7 +531,7 @@ class Database {
   }
 
   //delete Kabaddi Match
-  async deleteKabaddiMatch(matchId){
+  async deleteKabaddiMatch(matchId) {
     try {
       const matchData = await axios.delete(`${conf.databaseUrl}/kabaddimatch/${matchId}`).then((response) => response.data)
         .catch((error) => {
@@ -535,13 +550,13 @@ class Database {
   // update Bedmintan Match
   async updateBedmintanMatch(
     match
-  ){
+  ) {
     try {
       const matchData = await axios.put(`${conf.databaseUrl}/badmintonMatch`,
         match).then((response) => response.data)
-      .catch((error) => {
-        throw error
-      });
+        .catch((error) => {
+          throw error
+        });
 
       if (matchData.error) {
         throw new Error(matchData.error);
@@ -554,57 +569,57 @@ class Database {
   }
 
   //createUserMatch
-  async createUserMatch(data){
+  async createUserMatch(data) {
     try {
       const team1 = await axios.post(`${this.databaseUrl}/team`, {
-        tournament : data.tournament,
-        name : data.team1.name,
+        tournament: data.tournament,
+        name: data.team1.name,
       })
-      .then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      });
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
 
-       data.team1.players.map(async (p) => {
+      data.team1.players.map(async (p) => {
         const player = await this.createPlayer(p.name, team1.id);
       })
 
 
       const team2 = await axios.post(`${this.databaseUrl}/team`, {
-        tournament : data.tournament,
-        name : data.team2.name,
+        tournament: data.tournament,
+        name: data.team2.name,
       })
-      .then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      });
+        .then((response) => response.data)
+        .catch((error) => {
+          throw new Error(error.message);
+        });
 
-       data.team2.players.map(async (p) => {
+      data.team2.players.map(async (p) => {
         const player = await this.createPlayer(p.name, team2.id);
       })
 
-    let matchData = null;
+      let matchData = null;
 
-    if(data.tournament.game === 'BADMINTON'){
-      matchData = await axios.post(`${this.databaseUrl}/create`, {
-        ...data,
-        team1,
-        team2
-      }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-    }
-    else if(data.tournament.game === 'KABADDI'){
-       matchData = await axios.post(`${this.databaseUrl}/createkabaddiMatch`, {
-        ...data,
-        team1,
-        team2
-      }).then((response) => response.data)
-      .catch((error) => {
-        throw new Error(error.message);
-      })
-    }
+      if (data.tournament.game === 'BADMINTON') {
+        matchData = await axios.post(`${this.databaseUrl}/create`, {
+          ...data,
+          team1,
+          team2
+        }).then((response) => response.data)
+          .catch((error) => {
+            throw new Error(error.message);
+          })
+      }
+      else if (data.tournament.game === 'KABADDI') {
+        matchData = await axios.post(`${this.databaseUrl}/createkabaddiMatch`, {
+          ...data,
+          team1,
+          team2
+        }).then((response) => response.data)
+          .catch((error) => {
+            throw new Error(error.message);
+          })
+      }
 
       return matchData
 
@@ -627,7 +642,7 @@ class Database {
   // *******************************************************************************
 
   //create websocket for match
-  async createWebSocket(matchId){
+  async createWebSocket(matchId) {
     try {
       return await SockJS(`${conf.databaseUrl}/ws`);
     } catch (error) {
@@ -635,7 +650,7 @@ class Database {
     }
   }
 
-  
+
 }
 
 const database = new Database();
