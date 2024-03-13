@@ -583,7 +583,10 @@ class Database {
         const player = await this.createPlayer(p.name, team2.id);
       })
 
-      const matchData = await axios.post(`${this.databaseUrl}/create`, {
+    let matchData = null;
+
+    if(data.tournament.game === 'BADMINTON'){
+      matchData = await axios.post(`${this.databaseUrl}/create`, {
         ...data,
         team1,
         team2
@@ -591,6 +594,17 @@ class Database {
       .catch((error) => {
         throw new Error(error.message);
       })
+    }
+    else if(data.tournament.game === 'KABADDI'){
+       matchData = await axios.post(`${this.databaseUrl}/createkabaddiMatch`, {
+        ...data,
+        team1,
+        team2
+      }).then((response) => response.data)
+      .catch((error) => {
+        throw new Error(error.message);
+      })
+    }
 
       return matchData
 
