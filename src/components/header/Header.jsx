@@ -136,7 +136,7 @@ function Header() {
                 </Link>
                 {authStatus && (
             <Link to="/profile" className="text-center">
-              <Button className="btn-outline btn-wide rounded-full">
+              <Button className="btn-outline btn-wide rounded-full" onClick={toggleMenu}>
                 Profile <User size={24} />
               </Button>
             </Link>

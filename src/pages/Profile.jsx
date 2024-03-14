@@ -2,7 +2,8 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, ShowProfileTabs } from "../components";
 import { Link, useNavigate } from "react-router-dom";
-import { logout } from "../store/authslice";
+import { logout as userLogout } from "../store/authslice";
+import { toast } from "sonner";
 
 function Profile() {
   const user = useSelector((state) => state.auth.userData);
@@ -10,13 +11,14 @@ function Profile() {
   const dispatch = useDispatch();
 
   const logout = (e) => {
-    console.log(e);
-    e.target.disabled = true;
+    // console.log(e);
+    // e.target.disabled = true;
     localStorage.clear();
-    dispatch(logout());
-    toast.success("Login Success");
+    dispatch(userLogout());
+    toast.success("Logout Success");
+    
     navigate("/");
-    e.target.disabled = false;
+    // e.target.disabled = false;
   }
 
   return (
