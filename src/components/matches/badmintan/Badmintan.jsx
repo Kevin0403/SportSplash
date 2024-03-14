@@ -7,6 +7,7 @@ import Stomp from "stompjs";
 import { useSelector } from "react-redux";
 import { MatchContext } from "../../../context/MatchContextProvider";
 import Loading from "../../Loading";
+import MatchHeader from "../MatchHeader";
 
 function Match() {
   const { matchId } = useParams();
@@ -59,7 +60,24 @@ function Match() {
   }
 
   function startMatch() {
+    //Enter required score of the match
+    let requiredScore;
+
+    while(true){
+    requiredScore = prompt("Enter required score of the match", "21");
+    try{
+      requiredScore = parseInt(requiredScore);
+      if(requiredScore < 1){
+        continue;
+      }else
+        break;
+    }
+    catch(e){
+      continue;
+    }
+    }
     if (
+      
       confirm(
         `Are you sure you want to start the match ${
           status === "ONGOING" ? "" : "again "
@@ -69,7 +87,7 @@ function Match() {
       socket.send(
         `/app/startBadmintonMatch/${matchId}`,
         {},
-        JSON.stringify({ status: "ONGOING" })
+        JSON.stringify({ status: "ONGOING", requiredScore })
       )
     }
   }
@@ -86,6 +104,7 @@ function Match() {
 
   return match ? (
     <div className=" p-4">
+      <MatchHeader match={match} />
       <div className="flex justify-around">
         <div className="flex flex-col items-center">
           <div className="text-2xl font-bold mb-2">{match.team1?.name}</div>
@@ -127,12 +146,12 @@ function Match() {
         <div className="text-xl font-bold mb-2">Key Points</div>
         <div className="team-key-points">
           <div className="bg-blue-200 p-2 mb-2 rounded-md">
-            Match started at {match.startDate}
+            Match started at {match.startTime}
           </div>
           {
             match.status === "COMPLETED" && (
               <div className="bg-blue-200 p-2 mb-2 rounded-md">
-                Match completed at {match.endDate}
+                Match completed at {match.endTime}
               </div>
             )
           }

@@ -16,7 +16,15 @@ function Tournaments() {
         {
           name: "Kabaddi",
           to: "kabaddi",
-        }
+        },
+        {
+          name: "Table Tennis",
+          to: "tabletennis",
+        },
+        {
+          name: "Volleyball",
+          to: "volleyball",
+        },
       ];
   return (
     <div className='flex flex-col'>

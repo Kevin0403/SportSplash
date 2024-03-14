@@ -434,6 +434,7 @@ class Database {
         .catch((error) => {
           throw new Error(error.message);
         })
+        
 
       if (matchData.error) {
         throw new Error(matchData.error);
@@ -478,6 +479,10 @@ class Database {
   // get bedmintan match
   async getMatches(id, game) {
     try {
+      if(game === 'VOLLEYBALL')
+        game = 'BADMINTON'
+      else if(game === 'TABLETENNIS')
+        game = 'BADMINTON'
       const matchData = await axios.get(`${conf.databaseUrl}/tournamentmatch/${game}/${id}`).then((response) => response.data)
         .catch((error) => {
           throw error

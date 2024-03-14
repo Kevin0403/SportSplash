@@ -11,10 +11,20 @@ function SelectGames() {
           to: "Badminton"
         },
         {
-          id : 7,
+          id : 2,
           value : "Kabaddi",
           to : "Kabaddi"
         },
+        {
+          id : 3,
+          value : "Table Tennis",
+          to : "TableTennis"
+        },
+        {
+          id : 4,
+          value : "Volleyball",
+          to : "VolleyBall"
+        }
         
       ]
 

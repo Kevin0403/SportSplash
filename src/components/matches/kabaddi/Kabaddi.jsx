@@ -7,6 +7,7 @@ import { toast } from "sonner"
 import Popup from "./Popup";
 import ScoreBoard from "./ScoreBoard";
 import Loading from "../../Loading";
+import MatchHeader from "../MatchHeader";
 
 
 function Kabaddi() {
@@ -126,9 +127,7 @@ function Kabaddi() {
   return match ? (
     <div className=" p-2">
       {/* Dispaly tournament name and details */}
-      <div className="text-xl mb-2">
-        <h1 className="text-center "><span className=" ">{match.tournament.tournamentName || `Hosted By ${match.tournament.user.fname} ${match.tournament.user.lname}`}</span></h1>
-      </div>
+      <MatchHeader match={match} />
       {
             status === "UPCOMING" &&
             <div className=" text-lg text-red-600 p-2 mb-2 rounded-md text-center">

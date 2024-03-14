@@ -3,7 +3,8 @@ import { BadmintonMatch, Kabaddi } from '../components';
 
 const MatchRoutes = {
     BADMINTON  : (<BadmintonMatch />),
-    FOOTBALL   : (<div>Football</div>),
+    VOLLEYBALL : (<BadmintonMatch />),
+    TABLETENNIS: (<BadmintonMatch />),
     KABADDI   : (<Kabaddi />),
 }
 

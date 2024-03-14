@@ -198,6 +198,12 @@ class Auth {
                 case 'KABADDI':
                     return await this.database.createKabaddiMatch(matchData, tournamentId);
                     break;
+                case 'TABLETENNIS':
+                    return await this.database.createBedmintanMatch(matchData, tournamentId);
+                    break;
+                case 'VOLLEYBALL':
+                    return await this.database.createBedmintanMatch(matchData, tournamentId);
+                    break;
             
                 default:
                     break;
@@ -218,6 +224,12 @@ class Auth {
                     break;
                 case 'KABADDI':
                     return await this.database.updateKabaddiMatch(match);
+                    break;
+                case 'TABLETENNIS':
+                    return await this.database.updateBedmintanMatch(match);
+                    break;
+                case 'VOLLEYBALL':
+                    return await this.database.updateBedmintanMatch(match);
                     break;
             
                 default:
@@ -256,6 +268,12 @@ class Auth {
                 case 'KABADDI':
                     return await this.database.getKabaddiMatch(tournamentId);
                     break;
+                case 'TABLETENNIS':
+                    return await this.database.getBedmintanMatch(tournamentId);
+                    break;
+                case 'VOLLEYBALL':
+                    return await this.database.getBedmintanMatch(tournamentId);
+                    break;
             }
         } catch (error) {
             throw error
@@ -272,7 +290,12 @@ class Auth {
                 case 'KABADDI':
                     return await this.database.deleteKabaddiMatch(matchId)
                     break;
-            
+                case 'TableTennis':
+                    return await this.database.deleteBedmintanMatch(matchId)
+                    break;
+                case 'VolleyBall':
+                    return await this.database.deleteBedmintanMatch(matchId)
+                    break;
                 default:
                     break;
             }

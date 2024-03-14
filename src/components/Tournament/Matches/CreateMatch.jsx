@@ -48,6 +48,7 @@ function CreateMatch() {
             throw new Error("Both Team doesn't have same value")
         }else{
             const match = authService.createMatch(data, tournamentId, tournament.game)
+            console.log(match + " sfdsf")
             if(match){
               toast.success("Match Created")
             }
