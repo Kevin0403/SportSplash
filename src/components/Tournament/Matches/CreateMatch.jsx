@@ -81,7 +81,7 @@ function CreateMatch() {
         </h2>
 
         <form onSubmit={handleSubmit(submit)} className="mt-8">
-          <div className="flex flex-row flex-wrap w-full">
+          <div className="flex flex-row flex-wrap w-full ">
             <Select
             label = 'Team 1'
             setbyid = {true}
@@ -111,7 +111,7 @@ function CreateMatch() {
             />
           </div>
 
-          <div className='flex flex-row flex-grow flex-wrap w-full'>
+          <div className='flex flex-row flex-grow  w-full'>
             <Input 
               label = "Start-Date"
               placeholder = ""
@@ -127,7 +127,7 @@ function CreateMatch() {
               placeholder = "time"
               type = 'time'
               defaultValue = {(match?.startTime)  || ''}
-              divClass = "basis-1/2 pr-2 "
+              divClass = "basis-1/2"
               {...register("startTime", {
                 required: "Start Time is required"
               })}
