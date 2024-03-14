@@ -31,8 +31,10 @@ function CreateTournament() {
 
     const createTournament = async (data) => {
       try{
+        const tostId = toast.loading("Creating Tournament");
         const tournamentData =await authService.createTournament({...data, game}, user);
         if(tournamentData){
+          toast.dismiss(tostId);
           toast.success("Tournament Created Successfully"); 
           navigate(`/tournament/${tournamentData.id}`);
         }
