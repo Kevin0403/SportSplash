@@ -135,8 +135,12 @@ function Header() {
                   <Button className="btn-wide" onClick={toggleMenu}>Create</Button>
                 </Link>
                 {authStatus && (
-                  <span className="text-center"><Button className="btn-wide" onClick={remove}>Logout</Button></span>
-                )}
+            <Link to="/profile" className="text-center">
+              <Button className="btn-outline btn-wide rounded-full">
+                Profile <User size={24} />
+              </Button>
+            </Link>
+          )}
               </div>
             </div>
           </div>
