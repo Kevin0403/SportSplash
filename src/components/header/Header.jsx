@@ -21,10 +21,10 @@ function Header() {
       name: "Matches",
       to: "/matches",
     },
-    {
-      name: "About",
-      to: "/about",
-    },
+    // {
+    //   name: "About",
+    //   to: "/about",
+    // },
     {
       name: "Contact",
       to: "/contact",
