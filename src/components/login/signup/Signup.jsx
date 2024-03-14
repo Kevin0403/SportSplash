@@ -51,7 +51,7 @@ function Signup() {
         userData = await authService.login(userData);
         if(userData){
             dispatch(authLogin(userData));
-            toast.success("Login Success");
+            toast.success("Registered Successfully");
             navigate('/');
         }
       }

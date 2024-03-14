@@ -622,7 +622,7 @@ class Database {
 
       let matchData = null;
 
-      if (data.tournament.game === 'BADMINTON') {
+      if (data.tournament.game === 'BADMINTON' || data.tournament.game === 'VOLLEYBALL' || data.tournament.game === 'TABLETENNIS') {
         matchData = await axios.post(`${this.databaseUrl}/create`, {
           ...data,
           team1,
