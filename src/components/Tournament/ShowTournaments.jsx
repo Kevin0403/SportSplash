@@ -27,7 +27,7 @@ const [data, setData] = useState(null);
   }, []);
   return data ?  (
     <div>
-        <ul className='flex flex-wrap justify-center space-x-8 '>
+        <ul className='flex flex-wrap justify-center '>
         {data && 
          (game ?  data.filter((tournament) => tournament.game === game.toUpperCase())?.map(
                 (tournament) => {

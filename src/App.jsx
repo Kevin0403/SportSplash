@@ -19,7 +19,7 @@ function App() {
     <div className="flex flex-col min-h-screen">
       <Toaster position="top-right" richColors />
       <Header />
-      <main className="flex-1 bg-common">
+      <main className="flex-1 h-full bg-common">
         {/* <Sidebar /> */}
         <Outlet />
       </main>

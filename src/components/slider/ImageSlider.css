@@ -1,6 +1,6 @@
 .slide {
     transform: scale(0.4);
-    transition: transform 400ms;
+    transition: transform 400ms, opacity 400ms;
     opacity: 0.4;
   }
   

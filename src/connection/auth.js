@@ -91,9 +91,9 @@ class Auth {
     }
 
     // Get Tournaments
-    async getTournaments() {
+    async getTournaments(userId) {
         try {
-            return await this.database.getAllTournaments();
+            return await this.database.getAllTournaments(userId);
         } catch (error) {
             throw error;
         }
@@ -232,6 +232,15 @@ class Auth {
     async getMatches(tournamentId, game){
         try {
             return await this.database.getMatches(tournamentId, game);
+        } catch (error) {
+            throw error
+        }
+    }
+
+    // get user matches
+    async getUserMatches(userId){
+        try {
+            return await this.database.getUserMatches(userId);
         } catch (error) {
             throw error
         }

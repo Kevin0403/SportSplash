@@ -10,7 +10,6 @@ const router = createBrowserRouter([
     {
       path: '/',
       element: <App />,
-      exact: true,
       children: [
         {
           path: '/',
@@ -26,7 +25,6 @@ const router = createBrowserRouter([
         },
         {
           path : '/signup',
-          exact : true,
           element :(
             <Protected authentication = {false} restricted>
               <Signup/> 
@@ -35,7 +33,6 @@ const router = createBrowserRouter([
         },
         {
           path : '/create',
-          exact : true,
           element : (
             <Protected authentication>
                 <Create/>
@@ -78,7 +75,6 @@ const router = createBrowserRouter([
         },
         {
           path : '/tournament/:tournamentId',
-          exact : true,
           element : (
             <Protected authentication = {false}>
               <TournamentContextProvider>
@@ -119,7 +115,6 @@ const router = createBrowserRouter([
         },
         {
           path : '/matches',
-          exact : true,
           element : (
             <Protected authentication = {false}>
               <AllMatchs/>
@@ -190,7 +185,9 @@ const router = createBrowserRouter([
         },
         {
           path: '/profile',
-          element: <Profile/>
+          element: (<Protected authentication = {true}>
+            <Profile/>
+            </Protected>)
         }
 
       ]

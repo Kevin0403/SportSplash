@@ -181,10 +181,10 @@ class Database {
   }
 
   // get all tournaments
-  async getAllTournaments() {
+  async getAllTournaments(userId) {
     try {
       const tournamentData = await axios
-        .get(`${this.databaseUrl}/getTournaments`)
+        .get(`${this.databaseUrl}/getTournaments${userId ? `/${userId}` : ''}`)
         .then((response) => response.data)
         .catch((error) => {
           throw new Error(error.message);
@@ -390,6 +390,23 @@ class Database {
 
       if (matchData.error) {
         throw new Error(matchData.error);
+      } else {
+        return matchData;
+      }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUserMatches(userId) {
+    try {
+      const matchData = await axios.get(`${conf.databaseUrl}/getusermatches/${userId}`).then((response) => response.data)
+        .catch((error) => {
+          return { error: (error.request.response || error.message) };
+        });
+
+      if ((matchData && matchData.error)) {
+        throw new Error(tournamentData.error || "Not able to send request");
       } else {
         return matchData;
       }

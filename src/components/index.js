@@ -32,8 +32,10 @@ import Logo from "./Logo";
 import ImageSlider from "./slider/ImageSlider";
 import { IMAGES as HomeSliderImages } from "./data/SliderImages";
 import TournamentOverview from "./Tournament/TournamentOverview";
+import ShowProfileTabs from "./profile/ShowTabs";
 
 export {
+    ShowProfileTabs,
     TournamentOverview,
     HomeSliderImages,
 

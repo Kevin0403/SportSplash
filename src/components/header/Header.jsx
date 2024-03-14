@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import Button from "../Button";
 import Input from "../Input";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -72,16 +72,18 @@ function Header() {
         <div className="flex grow justify-end items-center">
           {/* <Input placeholder="Search" type="text" /> */}
         </div>
-        <div className="hidden mx-2 lg:block">
+        <div className="hidden lg:block">
           <Link to="/create">
-            <Button className="mx-2">Create</Button>
+            <Button className="">Create</Button>
           </Link>
         </div>
-        <div className="hidden mx-2 lg:block">
+        <div className="hidden lg:block">
           {authStatus && (
-            <Button onClick={remove} className="mx-2">
-              Logout
-            </Button>
+            <Link to="/profile">
+              <Button className="btn-outline rounded-full">
+                <User size={24} />
+              </Button>
+            </Link>
           )}
         </div>
         <div className="lg:hidden">

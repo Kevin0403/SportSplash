@@ -124,10 +124,10 @@ function Kabaddi() {
 
 
   return match ? (
-    <div className=" p-4">
+    <div className=" p-2">
       {/* Dispaly tournament name and details */}
-      <div className="text-2xl mb-2">
-        <h1 className="text-center ">Tournament : <span className="text-gray-500">{match.tournament.tournamentName}</span></h1>
+      <div className="text-xl mb-2">
+        <h1 className="text-center "><span className=" ">{match.tournament.tournamentName || `Hosted By ${match.tournament.user.fname} ${match.tournament.user.lname}`}</span></h1>
       </div>
       {
             status === "UPCOMING" &&

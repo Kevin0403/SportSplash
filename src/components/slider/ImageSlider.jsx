@@ -35,6 +35,7 @@ const ImageSlider = ({ images, slidesToShow = 3 }) => {
     nextArrow: <NextArrow onClick />,
     prevArrow: <PrevArrow onClick />,
     beforeChange: (current, next) => setImageIndex(next),
+    autoplay : true ,
     responsive: [
       {
         breakpoint: 1490,
