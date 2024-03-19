@@ -4,6 +4,7 @@ import { Button, ShowProfileTabs } from "../components";
 import { Link, useNavigate } from "react-router-dom";
 import { logout as userLogout } from "../store/authslice";
 import { toast } from "sonner";
+import userphoto from '/user.png'
 
 function Profile() {
   const user = useSelector((state) => state.auth.userData);
@@ -26,7 +27,7 @@ function Profile() {
       <div className="flex flex-row justify-center flex-wrap lg:flex-none items-center bg-card lg:min-h-[70vh] p-8 lg:flex-col  lg:justify-start">
         <div className="avatar mx-5">
           <div className=" w-36 mask mask-squircle">
-            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+            <img className="p-1" src={userphoto} alt="user"/>
           </div>
         </div>
         <div className="text-center">
