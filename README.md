@@ -47,3 +47,5 @@ SportSplash is a dynamic sport tournament platform designed to cater to the need
 
 
 ### PPT - [Click here to view](https://www.canva.com/design/DAF4XvB56uw/SHqPS0YCeMN4FtEbqCEMPQ/edit?utm_content=DAF4XvB56uw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+### Server - [Github](https://github.com/Kevin0403/SportSplashServer)
