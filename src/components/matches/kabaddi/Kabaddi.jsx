@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { MatchContext } from "../../../context/MatchContextProvider";
-import {Button} from '../../index'
-import { toast } from "sonner"
+import { Button } from "../../index";
+import { toast } from "sonner";
 import Popup from "./Popup";
 import ScoreBoard from "./ScoreBoard";
 import Loading from "../../Loading";
 import MatchHeader from "../MatchHeader";
-
 
 function Kabaddi() {
   const { matchId } = useParams();
@@ -20,23 +19,27 @@ function Kabaddi() {
   const [onClose, setOnClose] = useState(false);
   const [team, setTeam] = useState(null);
 
-
   useEffect(() => {
     if (socket) {
       socket.connect({}, () => {
-        socket.subscribe(`/public/kabaddiScoreUpdates/${matchId}`, (message) => {
-          const score = JSON.parse(message.body).body;
-          console.log(score)
-          setTeamA(score.team1score);
-          setTeamB(score.team2score);
-          if(score.status !== status){
-            setStatus(score.status)
+        socket.subscribe(
+          `/public/kabaddiScoreUpdates/${matchId}`,
+          (message) => {
+            const score = JSON.parse(message.body).body;
+            console.log(score);
+            setTeamA(score.team1score);
+            setTeamB(score.team2score);
+            if (score.status !== status) {
+              setStatus(score.status);
+            }
+            if (score.status === "COMPLETED") {
+              toast.success(
+                "Match Completed \n Winner is " + score.winner.name
+              );
+            }
+            setMatch((prev) => ({ ...prev, ...score }));
           }
-          if (score.status === "COMPLETED") {
-            toast.success("Match Completed \n Winner is " + score.winner.name);
-          }
-          setMatch((prev) => ({ ...prev, ...score }));
-        });
+        );
       });
     }
   }, [socket]);
@@ -45,8 +48,8 @@ function Kabaddi() {
     if (match) {
       setTeamA(match.team1score);
       setTeamB(match.team2score);
-      if(status !== match.status){
-        setStatus(match.status)
+      if (status !== match.status) {
+        setStatus(match.status);
       }
     }
   }, [match]);
@@ -59,7 +62,7 @@ function Kabaddi() {
     socket.send(
       `/app/updateKabaddiScore/${matchId}`,
       {},
-      JSON.stringify({...data, status: status})
+      JSON.stringify({ ...data, status: status })
     );
     setOnClose(false);
   }
@@ -68,7 +71,6 @@ function Kabaddi() {
     await setTeam(e.target.name);
     setOnClose(true);
   }
-
 
   function startMatch() {
     if (
@@ -79,9 +81,9 @@ function Kabaddi() {
       )
     ) {
       const score = {
-        status: 'ONGOING'
+        status: "ONGOING",
       };
-      
+
       socket.send(
         `/app/startKabaddiMatch/${matchId}`,
         {},
@@ -103,13 +105,9 @@ function Kabaddi() {
       )
     ) {
       const score = {
-        status: 'COMPLETED'
+        status: "COMPLETED",
       };
-      socket.send(
-        `/app/endKabaddiMatch/${matchId}`,
-        {},
-        JSON.stringify(score)
-      );
+      socket.send(`/app/endKabaddiMatch/${matchId}`, {}, JSON.stringify(score));
     }
   }
 
@@ -118,23 +116,21 @@ function Kabaddi() {
       socket.send(
         `/app/updateKabaddiScore/${matchId}`,
         {},
-        JSON.stringify({ undo : true })
-      )
+        JSON.stringify({ undo: true })
+      );
     }
   }
-
 
   return match ? (
     <div className=" p-2">
       {/* Dispaly tournament name and details */}
       <MatchHeader match={match} />
-      {
-            status === "UPCOMING" &&
-            <div className=" text-lg text-red-600 p-2 mb-2 rounded-md text-center">
-              Math is not started yet
-              </div>
-          }
-          
+      {status === "UPCOMING" && (
+        <div className=" text-lg text-red-600 p-2 mb-2 rounded-md text-center">
+          Math is not started yet
+        </div>
+      )}
+
       {onClose && <Popup setOnClose={setOnClose} team={team} send={send} />}
       <div className="flex justify-around">
         <div className="flex flex-col items-center">
@@ -152,37 +148,37 @@ function Kabaddi() {
       {isAdmin && (
         <div>
           <div className="flex justify-around mt-8">
-          <Button
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
-            name="1"
-            disabled={status !=  "ONGOING"}
-            onClick={openPopup}
-          >
-            Add point to {match.team1?.name}
-          </Button>
-          <Button onClick={status != "ONGOING" ? startMatch : endMatch}>
-            {status === "ONGOING"? "End Match" : status === "UPCOMING" ? "Start Match" : "Restart"}
-          </Button>
-          <Button
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4 "
-            name="2"
-            disabled={status !=  "ONGOING"}
-            onClick={openPopup}
-          >
-            Add point to {match.team2?.name}
-          </Button>
-        </div>
-        <div className="flex justify-around mt-8">
-          <Button
-            disabled={status !=  "ONGOING"}
-            onClick={undoMatch}
-          >
-            Undo
-          </Button>
+            <Button
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+              name="1"
+              disabled={status != "ONGOING"}
+              onClick={openPopup}
+            >
+              Add point to {match.team1?.name}
+            </Button>
+            <Button onClick={status != "ONGOING" ? startMatch : endMatch}>
+              {status === "ONGOING"
+                ? "End Match"
+                : status === "UPCOMING"
+                ? "Start Match"
+                : "Restart"}
+            </Button>
+            <Button
+              className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded ml-4 "
+              name="2"
+              disabled={status != "ONGOING"}
+              onClick={openPopup}
+            >
+              Add point to {match.team2?.name}
+            </Button>
+          </div>
+          <div className="flex justify-around mt-8">
+            <Button disabled={status != "ONGOING"} onClick={undoMatch}>
+              Undo
+            </Button>
           </div>
         </div>
       )}
-
 
       <div className=" inline-flex justify-center mt-4 w-full">
         <ScoreBoard {...match} />
@@ -190,14 +186,14 @@ function Kabaddi() {
       <div className="mt-8 bg-gray-200 p-4">
         <div className="text-xl font-bold mb-2">Key Points</div>
         <div className="team-key-points">
-          {
-            status === "UPCOMING" &&
+          {status === "UPCOMING" && (
             <div className="bg-blue-200 text-red-600 p-2 mb-2 rounded-md">
               Math is not started yet
-              </div>
-          }
+            </div>
+          )}
           <div className="bg-blue-200 p-2 mb-2 rounded-md">
-            Match {status == "UPCOMING" ? 'will' : ""} start{status == "UPCOMING" ? "" : "ed"} at {match.startTime}
+            Match {status == "UPCOMING" ? "will" : ""} start
+            {status == "UPCOMING" ? "" : "ed"} at {match.startTime}
           </div>
           {match.status === "COMPLETED" && (
             <div className="bg-blue-200 p-2 mb-2 rounded-md">
