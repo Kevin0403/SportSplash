@@ -27,7 +27,7 @@ function TournamentOverview() {
   return data ? (
     <ul className='flex flex-wrap justify-center'>
         {
-            data.filter((tournament, index) => index < 5).map((tournament) => {
+            data && data.filter((tournament, index) => index < 5).map((tournament) => {
                 return (
                     <li key={tournament.id} className="m-3">
                       <Card {...tournament} showName/>
