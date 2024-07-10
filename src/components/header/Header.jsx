@@ -2,10 +2,10 @@ import React from "react";
 import { Menu, User, X } from "lucide-react";
 import Button from "../Button";
 import Input from "../Input";
-import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/authslice";
 import Logo from "../Logo";
+import { Link } from "react-router-dom";
 
 function Header() {
   const menuItems = [

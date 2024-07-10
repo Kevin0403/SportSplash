@@ -45,7 +45,8 @@ const ContactUsForm = () => {
   return (
     <form
       className="flex flex-col gap-7"
-      onSubmit={handleSubmit(submitContactForm)}
+      action="https://formspree.io/f/xoqgrnnq"
+      method="POST"
     >
       <div className="flex flex-col gap-5 lg:flex-row">
         <div className="flex flex-col gap-2 lg:w-[48%]">
